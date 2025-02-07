@@ -3,7 +3,7 @@ import { useTheme } from './context/ThemeContext';
 import LoadingScreen from './components/LoadingScreen';
 import SocialLinks from './components/SocialLinks';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Work from './components/Work';
 import Projects from './components/Projects.jsx';
