@@ -9,5 +9,42 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Disable right-click
+      document.addEventListener('contextmenu', (event) => event.preventDefault());
+
+      // Exit website and close tab if developer tools are opened
+      const devToolsDetection = () => {
+        const element = new Image();
+        Object.defineProperty(element, 'id', {
+          get: () => {
+            window.close();
+            window.location.href = 'about:blank';
+          }
+        });
+        console.log(element);
+      };
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.ctrlKey && event.shiftKey && event.key === 'J') || (event.ctrlKey && event.key === 'U')) {
+          window.close();
+          window.location.href = 'about:blank';
+        }
+      });
+
+      setInterval(devToolsDetection, 100);
+
+      // Prevent navigating back to the portfolio website
+      window.addEventListener('beforeunload', (event) => {
+        event.preventDefault();
+        window.location.href = 'about:blank';
+      });
+
+      // Manipulate browser history to prevent back navigation
+      history.pushState(null, null, window.location.href);
+      window.addEventListener('popstate', () => {
+        history.pushState(null, null, window.location.href);
+      });
+    </script>
   </body>
 </html>
