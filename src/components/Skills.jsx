@@ -1,36 +1,97 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
+import {CircularProgressbar, buildStyles} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import {
+    FaReact,
+    FaHtml5,
+    FaCss3Alt,
+    FaJs,
+    FaDocker,
+    FaGitAlt,
+    FaPython,
+    FaJava,
+    FaCuttlefish,
+    FaGithub,
+    FaNodeJs,
+    FaLinux,
+    FaMicrosoft,
+} from "react-icons/fa";
+import {SiTailwindcss, SiJetbrains, SiCplusplus} from "react-icons/si";
 
-const skills = [
-  { name: 'React', level: 90 },
-  { name: 'TypeScript', level: 85 },
-  { name: 'Node.js', level: 80 },
-  { name: 'Tailwind CSS', level: 95 },
-  { name: 'Next.js', level: 75 },
-  { name: 'PostgreSQL', level: 70 },
-];
+const skillCategories = {
+    "Programming Languages": [
+        {name: "Java", icon: <FaJava/>, level: 90, color: "#f89820"},
+        {name: "C", icon: <FaCuttlefish/>, level: 80, color: "#283593"},
+        {name: "C++", icon: <SiCplusplus/>, level: 85, color: "#0074B6"},
+        {name: "Python", icon: <FaPython/>, level: 75, color: "#6A98F0"},
+        {name: "JavaScript", icon: <FaJs/>, level: 88, color: "#F7DF1E"},
+    ],
+    Tools: [
+        {name: "VS Code", icon: <FaMicrosoft/>, level: 95, color: "#007ACC"},
+        {name: "JetBrains IDE", icon: <SiJetbrains/>, level: 85, color: "#FF0066"},
+        {name: "Git", icon: <FaGitAlt/>, level: 90, color: "#F1502F"},
+        {name: "GitHub", icon: <FaGithub/>, level: 92, color: "#6e5494"},
+        {name: "Docker", icon: <FaDocker/>, level: 80, color: "#2496ED"},
+    ],
+    Platforms: [
+        {name: "React", icon: <FaReact/>, level: 85, color: "#61DAFB"},
+        {name: "Node.js", icon: <FaNodeJs/>, level: 80, color: "#68A063"},
+        {name: "Linux OS", icon: <FaLinux/>, level: 88, color: "#FCC624"},
+        {name: "HTML", icon: <FaHtml5/>, level: 90, color: "#E34F26"},
+        {name: "CSS", icon: <FaCss3Alt/>, level: 88, color: "#1572B6"},
+        {name: "Tailwind CSS", icon: <SiTailwindcss/>, level: 92, color: "#38B2AC"},
+    ],
+};
 
 export default function Skills() {
-  return (
-    <section id="skills" className="py-20">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Skills</h2>
-        <div className="grid gap-6">
-          {skills.map((skill) => (
-            <div key={skill.name} className="space-y-2">
-              <div className="flex justify-between">
-                <span className="font-medium">{skill.name}</span>
-                <span>{skill.level}%</span>
-              </div>
-              <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-blue-600 dark:bg-blue-400 rounded-full transition-all duration-500"
-                  style={{ width: `${skill.level}%` }}
-                />
-              </div>
+    const [animatedLevels, setAnimatedLevels] = useState({});
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            const newLevels = {};
+            Object.keys(skillCategories).forEach((category) => {
+                skillCategories[category].forEach((skill) => {
+                    newLevels[skill.name] = skill.level;
+                });
+            });
+            setAnimatedLevels(newLevels);
+        }, 500);
+        return () => clearTimeout(timeout);
+    }, []);
+
+    return (
+        <section id="skills" className="py-20">
+            <div className="max-w-5xl mx-auto px-4">
+                <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
+                {Object.entries(skillCategories).map(([category, skills]) => (
+                    <div key={category} className="mb-10">
+                        <h3 className="text-2xl font-semibold mb-6">{category}</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+                            {skills.map((skill) => (
+                                <div key={skill.name} className="flex flex-col items-center">
+                                    <div className="w-24 h-24 relative">
+                                        <CircularProgressbar
+                                            value={animatedLevels[skill.name] || 0}
+                                            text={``}
+                                            styles={buildStyles({
+                                                pathColor: skill.color,
+                                                trailColor: "#d1d5db",
+                                                strokeLinecap: "round",
+                                            })}
+                                        />
+                                        <div className="absolute inset-0 flex items-center justify-center text-4xl"
+                                             style={{color: skill.color}}>
+                                            {skill.icon}
+                                        </div>
+                                    </div>
+                                    <p className="mt-2 text-lg font-medium"
+                                       style={{color: skill.color}}>{skill.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
