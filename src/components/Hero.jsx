@@ -59,7 +59,7 @@ export default function Hero() {
                 </p>
 
                 {/* Social Links - Visible only on mobile (md:hidden) */}
-                <div className="flex justify-center space-x-4 md:hidden">
+                <div className="flex justify-center space-x-4 sm:flex md:flex lg:hidden">
                     <a
                         href="https://github.com/anuragzete/"
                         target="_blank"

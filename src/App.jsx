@@ -1,16 +1,17 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useTheme} from './context/ThemeContext';
+import {Routes, Route} from 'react-router-dom'; // Import Routes and Route
 import LoadingScreen from './components/LoadingScreen';
 import SocialLinks from './components/SocialLinks';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
-import Blog from './components/Blog';
-import Footer from "./components/Footer.jsx";
-import Contact from "./components/Contact.jsx";
-import Work from "./components/Work.jsx";
-import Projects from "./components/Projects.jsx";
-import Skills from "./components/Skills.jsx";
+import Footer from './components/Footer.jsx';
+import Contact from './components/Contact.jsx';
+import Projects from './components/Projects.jsx';
+import Skills from './components/Skills.jsx';
+import Blog from './components/Blog.jsx';
+import Work from './components/Work.jsx';
+import Home from "./components/Home.jsx";
 
 export default function App() {
     const {theme} = useTheme();
@@ -19,13 +20,12 @@ export default function App() {
     const aboutRef = useRef(null);
 
     useEffect(() => {
-        // Wait for the entire page to load (including images & scripts)
         const handleLoad = () => {
-            setTimeout(() => setLoading(false), 500); // Small delay for smooth transition
+            setTimeout(() => setLoading(false), 500);
         };
 
         if (document.readyState === 'complete') {
-            handleLoad(); // If already loaded, run immediately
+            handleLoad();
         } else {
             window.addEventListener('load', handleLoad);
         }
@@ -34,11 +34,17 @@ export default function App() {
     }, []);
 
     useEffect(() => {
+        document.title = activeSection === 'default'
+            ? 'Anurag Zete | Home'
+            : `Anurag Zete | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;
+    }, [activeSection]);
+
+    useEffect(() => {
         if (activeSection === 'about' && aboutRef.current) {
-            setActiveSection('default'); // Ensure Home loads
+            setActiveSection('default');
             setTimeout(() => {
                 aboutRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-            }, 100); // Delay to ensure home page is loaded
+            }, 100);
         }
     }, [activeSection]);
 
@@ -47,37 +53,29 @@ export default function App() {
             {loading ? (
                 <LoadingScreen/>
             ) : (
-                <div className={`min-h-screen flex flex-col transition-all duration-700 ${
-                    theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
-                }`}>
-                    <Navbar setActiveSection={setActiveSection}/>
-                    <SocialLinks/>
-                    <main className="container flex-grow mx-auto px-4 pt-24">
-                        {activeSection === 'default' ? (
-                            <>
-                                <Hero/>
-                                <Hero/>
-                                <div ref={aboutRef}>
-                                    <About/>
-                                </div>
-                                <Blog/>
-                            </>
-                        ) : activeSection === 'work' ? (
-                            <Work/>
-                        ) : activeSection === 'projects' ? (
-                            <Projects/>
-                        ) : activeSection === 'skills' ? (
-                            <Skills/>
-                        ) : activeSection === 'contact' ? (
-                            <Contact/>
-                        ) : activeSection === 'about' ? (
-                            <About/>
-                        ) : null}
-                    </main>
-                    <Footer/>
+                <div className={`relative`}>
+                    <div className={`min-h-screen flex flex-col transition-all duration-700 ${
+                        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
+                    }`}>
+                        <Navbar setActiveSection={setActiveSection}/>
+                        <SocialLinks/>
+                        <main className="container flex-grow mx-auto px-4 pt-24">
+                            <Routes> {/* Use Routes to define your routes */}
+                                <Route path="/" element={
+                                    <Home/>
+                                }/>
+                                <Route path="/work" element={<Work/>}/>
+                                <Route path="/projects" element={<Projects/>}/>
+                                <Route path="/skills" element={<Skills/>}/>
+                                <Route path="/contact" element={<Contact/>}/>
+                                <Route path="/about" element={<About/>}/>
+                                <Route path="/blog" element={<Blog/>}/>
+                            </Routes>
+                        </main>
+                        <Footer/>
+                    </div>
                 </div>
             )}
         </>
     );
 }
-
