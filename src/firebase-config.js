@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAoHb5SWOBRHpCMEQj8Xxtro3tV73h8Kj4",
+    apiKey: "",
     authDomain: "YOUR_AUTH_DOMAIN",
     projectId: "my-blogging-website-1e155",
     storageBucket: "YOUR_STORAGE_BUCKET",

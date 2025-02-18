@@ -37,7 +37,7 @@ export default function Hero() {
     };
 
     return (
-        <section id="home" className="min-h-screen flex items-center justify-center pt-16">
+        <section id="home" className="min-h-screen flex items-center justify-center pt-14">
             <div className="text-center space-y-8">
                 <div className="space-y-4">
                     <h1 className="text-5xl md:text-7xl font-bold">

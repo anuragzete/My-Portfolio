@@ -30,12 +30,22 @@ export default {
         blink: {
           '50%': { opacity: '0' },
         },
+        floating: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        scrolling: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100px)' },
+        },
       },
       animation: {
         loadingDots: 'loadingDots 1s infinite steps(4)',
         coolStuff: 'coolStuff 2s infinite',
         wavingHand: 'wavingHand 1.5s infinite ease-in-out',
         blink: 'blink 1s infinite',
+        floating: 'floating 5s ease-in-out infinite',
+        scrolling: 'scrolling 3s linear infinite',
       },
     },
   },

@@ -1,27 +1,29 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {useTheme} from './context/ThemeContext';
-import {Routes, Route} from 'react-router-dom'; // Import Routes and Route
+import React, { useState, useEffect } from 'react';
+import { useTheme } from './context/ThemeContext';
+import { Routes, Route } from 'react-router-dom';
 import LoadingScreen from './components/LoadingScreen';
-import SocialLinks from './components/SocialLinks';
 import Navbar from './components/Navbar';
-import About from './components/About.jsx';
-import Footer from './components/Footer.jsx';
-import Contact from './components/Contact.jsx';
-import Projects from './components/Projects.jsx';
-import Skills from './components/Skills.jsx';
-import Blog from './components/Blog.jsx';
-import Work from './components/Work.jsx';
-import Home from "./components/Home.jsx";
+import About from './components/About';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Blog from './components/Blog';
+import Work from './components/Work';
+import Home from './components/Home';
+import SocialLinks from "./components/SocialLinks.jsx";
+import BackgroundColors from "./components/BackgroundColors.jsx";
 
 export default function App() {
-    const {theme} = useTheme();
+    const { theme } = useTheme();
     const [loading, setLoading] = useState(true);
-    const [activeSection, setActiveSection] = useState('default');
-    const aboutRef = useRef(null);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleLoad = () => {
-            setTimeout(() => setLoading(false), 500);
+            setTimeout(() => {
+                setLoading(false); // Update loading state after a delay
+            }, 500);
         };
 
         if (document.readyState === 'complete') {
@@ -30,49 +32,45 @@ export default function App() {
             window.addEventListener('load', handleLoad);
         }
 
+        // Cleanup listener when component is unmounted
         return () => window.removeEventListener('load', handleLoad);
     }, []);
 
     useEffect(() => {
-        document.title = activeSection === 'default'
-            ? 'Anurag Zete | Home'
-            : `Anurag Zete | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;
-    }, [activeSection]);
-
-    useEffect(() => {
-        if (activeSection === 'about' && aboutRef.current) {
-            setActiveSection('default');
-            setTimeout(() => {
-                aboutRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-            }, 100);
-        }
+        // Set dynamic page title based on active section
+        document.title = activeSection === "home"
+            ? "Blogs | Home"
+            : `Blogs | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;
     }, [activeSection]);
 
     return (
         <>
             {loading ? (
-                <LoadingScreen/>
+                <LoadingScreen />
             ) : (
-                <div className={`relative`}>
-                    <div className={`min-h-screen flex flex-col transition-all duration-700 ${
-                        theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
-                    }`}>
-                        <Navbar setActiveSection={setActiveSection}/>
-                        <SocialLinks/>
-                        <main className="container flex-grow mx-auto px-4 pt-24">
-                            <Routes> {/* Use Routes to define your routes */}
-                                <Route path="/" element={
-                                    <Home/>
-                                }/>
-                                <Route path="/work" element={<Work/>}/>
-                                <Route path="/projects" element={<Projects/>}/>
-                                <Route path="/skills" element={<Skills/>}/>
-                                <Route path="/contact" element={<Contact/>}/>
-                                <Route path="/about" element={<About/>}/>
-                                <Route path="/blog" element={<Blog/>}/>
+                <div
+                    className={`relative overflow-hidden ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}
+                >
+                    {/* Background with moving blurred shapes */}
+                    <BackgroundColors/>
+
+
+                    {/* Content */}
+                    <div className="relative min-h-screen flex flex-col transition-all duration-700">
+                        <Navbar setActiveSection={setActiveSection} />
+                        <SocialLinks />
+                        <main className="container flex-grow mx-auto px-4 pt-20">
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/work" element={<Work />} />
+                                <Route path="/projects" element={<Projects />} />
+                                <Route path="/skills" element={<Skills />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/blog" element={<Blog />} />
                             </Routes>
                         </main>
-                        <Footer/>
+                        <Footer />
                     </div>
                 </div>
             )}

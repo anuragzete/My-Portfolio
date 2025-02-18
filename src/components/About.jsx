@@ -1,6 +1,9 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
 export default function About() {
+    const navigate = useNavigate();
+
     return (
         <section id="about" className="py-20">
             <div className="max-w-4xl mx-auto">
@@ -29,12 +32,12 @@ export default function About() {
                             Let's build something amazing together! 🚀
                         </p>
                         <div className="pt-4">
-                            <a
-                                href="#contact"
-                                className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                            >
+                            <button onClick={() => navigate('/contact')}
+                                    className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                                 Get in Touch
-                            </a>
+                            </button>
+
+
                         </div>
                     </div>
                 </div>

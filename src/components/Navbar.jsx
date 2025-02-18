@@ -75,8 +75,8 @@ export default function Navbar({setActiveSection}) {
         alert("Resume Downloaded");
     };
 
-    const handleClick = () => {
-        setActiveSection('default');
+    const handleClick = (title) => {
+        setActiveSection(title);
     }
 
     return (
@@ -110,7 +110,7 @@ export default function Navbar({setActiveSection}) {
                 <div className="hidden md:flex items-center space-x-4">
                     {visibleNavItems.map((item) => (
                         <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme}
-                                 onClick={handleClick} neonIndex={neonIndex}/>
+                                 onClick={()=> handleClick(item.name)} neonIndex={neonIndex}/>
                     ))}
 
                     {/* Theme Toggle */}
@@ -136,7 +136,7 @@ export default function Navbar({setActiveSection}) {
                     : 'bg-white/80 shadow-lg'}`}
             >
                 <div className="grid grid-cols-2 gap-4">
-                    <NavItem key={'About'} to={'/about'} label={'About'} Icon={User} theme={theme} onClick={handleClick} neonIndex={neonIndex} />
+                    <NavItem key={'About'} to={'/about'} label={'About'} Icon={User} theme={theme} onClick={()=> handleClick('About')} neonIndex={neonIndex} />
                     {hiddenNavItems.map((item) => {
                         const commonClasses = `flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 
             ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`;
@@ -171,7 +171,7 @@ export default function Navbar({setActiveSection}) {
                                 label={item.name}
                                 Icon={item.icon}
                                 theme={theme}
-                                onClick={handleClick}
+                                onClick={()=> handleClick(item.name)}
                                 neonIndex={neonIndex}
                                 className={commonClasses} // Apply same styles
                             />
@@ -212,7 +212,7 @@ export default function Navbar({setActiveSection}) {
                                 </button>
                             ) : (
                                 // Handle normal navigation
-                                <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme} onClick={handleClick} neonIndex={neonIndex} />
+                                <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme} onClick={()=> handleClick(item.name)} neonIndex={neonIndex} />
                             )
                         ))}
 
@@ -244,14 +244,16 @@ const NavItem = ({to, label, Icon, theme, onClick, neonIndex}) => (
     <NavLink
         to={to}
         onClick={onClick}
-        className={({isActive}) =>
-            `flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-300 ${
-                theme === 'dark'
-                    ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`
-                    : 'hover:bg-gray-100 text-gray-600'
-            } ${
-                isActive ? 'text-indigo-500 font-bold' : theme === 'dark' ? 'text-white' : 'text-gray-600'
-            }`}
+        className={({ isActive }) =>
+            `flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-300
+            ${theme === 'dark'
+                ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`
+                : 'hover:bg-gray-100 text-gray-600'} 
+            ${isActive
+                ? 'text-indigo-500 font-bold' // Indicate active state with indigo and bold
+                : (theme === 'dark' ? 'text-white' : 'text-gray-600')} 
+            `
+        }
     >
         <Icon className="w-4 h-4"/>
         <span>{label}</span>
