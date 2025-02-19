@@ -39,8 +39,8 @@ export default function App() {
     useEffect(() => {
         // Set dynamic page title based on active section
         document.title = activeSection === "home"
-            ? "Blogs | Home"
-            : `Blogs | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;
+            ? "Anurag Zete | Home"
+            : `Anurag Zete | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;
     }, [activeSection]);
 
     return (

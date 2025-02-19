@@ -15,7 +15,7 @@ const ProjectCard = ({ project }) => {
         <div className="group rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 dark:bg-gray-800 bg-white">
             <div className="aspect-video overflow-hidden">
                 <img
-                    src={project.imageUrls?.[0] || 'https://via.placeholder.com/300'}
+                    src={project.image_urls?.[0] || 'https://via.placeholder.com/300'}
                     alt={project.name || 'Project Image'}
                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                 />

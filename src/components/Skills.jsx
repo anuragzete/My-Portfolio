@@ -13,33 +13,31 @@ import {
     FaCuttlefish,
     FaGithub,
     FaNodeJs,
-    FaLinux,
     FaMicrosoft,
 } from "react-icons/fa";
 import {SiTailwindcss, SiJetbrains, SiCplusplus} from "react-icons/si";
 
 const skillCategories = {
     "Programming Languages": [
-        {name: "Java", icon: <FaJava/>, level: 90, color: "#f89820"},
-        {name: "C", icon: <FaCuttlefish/>, level: 80, color: "#283593"},
-        {name: "C++", icon: <SiCplusplus/>, level: 85, color: "#0074B6"},
-        {name: "Python", icon: <FaPython/>, level: 75, color: "#6A98F0"},
-        {name: "JavaScript", icon: <FaJs/>, level: 88, color: "#F7DF1E"},
+        {name: "Java", icon: <FaJava/>, level: 80, color: "#f89820"},
+        {name: "C", icon: <FaCuttlefish/>, level: 60, color: "#283593"},
+        {name: "C++", icon: <SiCplusplus/>, level: 65, color: "#0074B6"},
+        {name: "Python", icon: <FaPython/>, level: 55, color: "#6A98F0"},
+        {name: "JavaScript", icon: <FaJs/>, level: 85, color: "#F7DF1E"},
     ],
     Tools: [
-        {name: "VS Code", icon: <FaMicrosoft/>, level: 95, color: "#007ACC"},
-        {name: "JetBrains IDE", icon: <SiJetbrains/>, level: 85, color: "#FF0066"},
+        {name: "VS Code", icon: <FaMicrosoft/>, level: 85, color: "#007ACC"},
+        {name: "JetBrains IDE", icon: <SiJetbrains/>, level: 90, color: "#FF0066"},
         {name: "Git", icon: <FaGitAlt/>, level: 90, color: "#F1502F"},
-        {name: "GitHub", icon: <FaGithub/>, level: 92, color: "#6e5494"},
-        {name: "Docker", icon: <FaDocker/>, level: 80, color: "#2496ED"},
+        {name: "GitHub", icon: <FaGithub/>, level: 90, color: "#6e5494"},
+        {name: "Docker", icon: <FaDocker/>, level: 60, color: "#2496ED"},
     ],
     Platforms: [
-        {name: "React", icon: <FaReact/>, level: 85, color: "#61DAFB"},
+        {name: "React", icon: <FaReact/>, level: 90, color: "#61DAFB"},
         {name: "Node.js", icon: <FaNodeJs/>, level: 80, color: "#68A063"},
-        {name: "Linux OS", icon: <FaLinux/>, level: 88, color: "#FCC624"},
         {name: "HTML", icon: <FaHtml5/>, level: 90, color: "#E34F26"},
-        {name: "CSS", icon: <FaCss3Alt/>, level: 88, color: "#1572B6"},
-        {name: "Tailwind CSS", icon: <SiTailwindcss/>, level: 92, color: "#38B2AC"},
+        {name: "CSS", icon: <FaCss3Alt/>, level: 80, color: "#1572B6"},
+        {name: "Tailwind CSS", icon: <SiTailwindcss/>, level: 85, color: "#38B2AC"},
     ],
 };
 

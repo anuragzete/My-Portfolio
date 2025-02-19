@@ -65,15 +65,15 @@ export default function Navbar({setActiveSection}) {
     };
 
     const handleResumeDownload = () => {
-        const resumePath = '../resources/AnuragZete-70.pdf';
+        const resumeUrl = 'https://drive.google.com/file/d/1iuPYQb_F2SfalSzOR-Xb-f_gzlhmg0PC/view?usp=drive_link'; // Replace with actual URL
         const link = document.createElement('a');
-        link.href = resumePath;
-        link.download = 'Anurag_Zete_Resume.pdf';
+        link.href = resumeUrl;
+        link.setAttribute('download', 'Anurag_Zete_Resume.pdf'); // Suggests download but depends on CORS settings
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        alert("Resume Downloaded");
     };
+
 
     const handleClick = (title) => {
         setActiveSection(title);
