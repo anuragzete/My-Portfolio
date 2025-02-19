@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { Calendar, MapPin, ExternalLink } from "lucide-react";
+import React from "react";
+import { Calendar, MapPin, ExternalLink, Github } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 const WorkExperienceCard = ({ experience, index, visible }) => {
     const { theme } = useTheme();
-    const [imageLoaded, setImageLoaded] = useState(false);
-
-    const handleImageLoad = () => setImageLoaded(true);
 
     return (
         <div
@@ -32,40 +29,29 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                     {/* Job Title & Company */}
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                         {experience.job_title && <h3 className="text-xl font-semibold">{experience.job_title}</h3>}
-                        {experience.company_name && experience.company_url && (
-                            <a
-                                href={experience.company_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`flex items-center space-x-1 text-sm ${
-                                    theme === "dark" ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
-                                }`}
-                            >
-                                <span>{experience.company_name}</span>
-                                <ExternalLink className="w-4 h-4" />
-                            </a>
-                        )}
-                    </div>
-
-                    {/* Company Logo */}
-                    {experience.company_logo_url && (
-                        <div className="mb-4">
-                            <img
-                                src={experience.company_logo_url}
-                                alt={experience.company_name || "Company Logo"}
-                                className={`w-24 h-24 object-contain ${imageLoaded ? "" : "opacity-0"}`}
-                                onLoad={handleImageLoad}
-                                loading="lazy"
-                            />
+                        <div className="flex items-center space-x-3">
+                            {experience.company_name && experience.company_url && (
+                                <a
+                                    href={experience.company_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`flex items-center space-x-1 text-sm ${
+                                        theme === "dark" ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
+                                    }`}
+                                >
+                                    <span>{experience.company_name}</span>
+                                    <ExternalLink className="w-4 h-4" />
+                                </a>
+                            )}
                         </div>
-                    )}
+                    </div>
 
                     {/* Duration & Location */}
                     {(experience.duration.start || experience.duration.end || experience.location) && (
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                             <div className="flex items-center">
                                 <Calendar className="w-4 h-4 mr-1" />
-                                {experience.duration.start} - {experience.duration.end}
+                                {experience.duration.start} - {experience.duration.end && experience.duration.end !== "Invalid date" ? experience.duration.end : "Present"}
                             </div>
                             {experience.location && (
                                 <div className="flex items-center">
@@ -78,31 +64,46 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
 
                     {/* Description */}
                     {Array.isArray(experience.description) && experience.description.length > 0 ? (
-                        <div className="space-y-2 mb-4 text-gray-600 dark:text-gray-300">
+                        <ul className="list-disc list-outside pl-5 space-y-2 mb-4 text-gray-600 dark:text-gray-300">
                             {experience.description.map((item, i) => (
-                                <p key={i}>{typeof item === "string" ? item : JSON.stringify(item)}</p>
+                                <li key={i}>{typeof item === "string" ? item : JSON.stringify(item)}</li>
                             ))}
-                        </div>
+                        </ul>
                     ) : (
                         <p className="text-gray-500 dark:text-gray-400 mb-4">No description available.</p>
                     )}
 
+                    {/* GitHub Icon + Technologies Section */}
+                    <div className="flex items-center justify-between mt-4">
+                        {/* Technologies */}
+                        {experience.technologies?.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                                {experience.technologies.map((tech, i) => (
+                                    <span
+                                        key={i}
+                                        className={`px-3 py-1 text-sm rounded-full ${
+                                            theme === "dark" ? "bg-blue-900/50 text-blue-400" : "bg-blue-100 text-blue-600"
+                                        }`}
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
 
-                    {/* Technologies */}
-                    {experience.technologies?.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                            {experience.technologies.map((tech, i) => (
-                                <span
-                                    key={i}
-                                    className={`px-3 py-1 text-sm rounded-full ${
-                                        theme === "dark" ? "bg-blue-900/50 text-blue-400" : "bg-blue-100 text-blue-600"
-                                    }`}
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    )}
+                        {/* GitHub Icon (Aligned with Technologies) */}
+                        {experience.github_url && (
+                            <a
+                                href={experience.github_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+                                title="View GitHub Repository"
+                            >
+                                <Github className="w-6 h-6" />
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { db } from '../firebase-config';
-import { collection, getDocs } from 'firebase/firestore';
 import WorkExperienceCard from './WorkExperienceCard';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+
 
 const Work = () => {
     const { theme } = useTheme();
@@ -22,7 +23,9 @@ const Work = () => {
         setLoading(true);
         setError(null);
         try {
-            const querySnapshot = await getDocs(collection(db, 'workExperience'));
+            const q = query(collection(db, 'workExperience'), orderBy('index', 'asc')); // Order by index
+            const querySnapshot = await getDocs(q);
+
             const experiencesList = querySnapshot.docs.map((doc) => {
                 const data = doc.data();
                 return {
@@ -38,6 +41,7 @@ const Work = () => {
                     },
                     location: data.location || '',
                     company_logo_url: data.company_logo_url || '',
+                    github_url: data.github_url || ''
                 };
             });
 
