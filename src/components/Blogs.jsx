@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Calendar, Clock, ArrowRight} from 'lucide-react';
 import {useTheme} from '../context/ThemeContext';
 
-export default function Blog() {
+export default function Blogs() {
     const {theme} = useTheme();
     const [blogPosts, setBlogPosts] = useState([]);
     const [loading, setLoading] = useState(true);

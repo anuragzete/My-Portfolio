@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Contact from './components/Contact';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
-import Blog from './components/Blog';
+import Blogs from './components/Blogs';
 import Work from './components/Work';
 import Home from './components/Home';
 import SocialLinks from "./components/SocialLinks.jsx";
@@ -67,7 +67,7 @@ export default function App() {
                                 <Route path="/skills" element={<Skills />} />
                                 <Route path="/contact" element={<Contact />} />
                                 <Route path="/about" element={<About />} />
-                                <Route path="/blog" element={<Blog />} />
+                                <Route path="/blog" element={<Blogs />} />
                             </Routes>
                         </main>
                         <Footer />

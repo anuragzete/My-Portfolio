@@ -30,18 +30,18 @@ export default function Navbar({setActiveSection}) {
     }, []);
 
     const navItems = [
-        { name: 'Home', icon: Home, to: '/' },
-        { name: 'Blog', icon: BookOpen, to: '/blog' },
-        { name: 'Skills', icon: Code, to: '/skills' },
-        { name: 'Work', icon: Clock, to: '/work' },
-        { name: 'Projects', icon: Briefcase, to: '/projects' },
-        { name: 'Certificates', icon: Award, href: 'https://github.com/anuragzete/Certificates' },
-        { name: 'Resume', icon: FileText },
-        { name: 'Contact', icon: Mail, to: '/contact' }
+        {name: 'Home', icon: Home, to: '/'},
+        {name: 'Blogs', icon: BookOpen, href: 'https://blogs-anuragzete.web.app/'},
+        {name: 'Skills', icon: Code, to: '/skills'},
+        {name: 'Work', icon: Clock, to: '/work'},
+        {name: 'Projects', icon: Briefcase, to: '/projects'},
+        {name: 'Certificates', icon: Award, href: 'https://github.com/anuragzete/Certificates'},
+        {name: 'Resume', icon: FileText},
+        {name: 'Contact', icon: Mail, to: '/contact'}
     ];
 
-    const visibleNavItems = navItems.filter(item => ['Home', 'Blog', 'Contact'].includes(item.name));
-    const hiddenNavItems = navItems.filter(item => !['Home', 'Blog', 'Contact'].includes(item.name));
+    const visibleNavItems = navItems.filter(item => ['Home', 'Blogs', 'Contact'].includes(item.name));
+    const hiddenNavItems = navItems.filter(item => !['Home', 'Blogs', 'Contact'].includes(item.name));
 
 
     useEffect(() => {
@@ -108,10 +108,27 @@ export default function Navbar({setActiveSection}) {
 
                 {/* Visible Navigation Items */}
                 <div className="hidden md:flex items-center space-x-4">
-                    {visibleNavItems.map((item) => (
-                        <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme}
-                                 onClick={()=> handleClick(item.name)} neonIndex={neonIndex}/>
-                    ))}
+                    {visibleNavItems.map((item) => {
+                        return item.name === 'Blogs' ? (
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-300
+                ${theme === 'dark'
+                                    ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`
+                                    : 'hover:bg-gray-100 text-gray-600'}`
+                                }
+                            >
+                                <item.icon className="w-5 h-5"/>
+                                <span>{item.name}</span>
+                            </a>
+                        ) : (
+                            <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme}
+                                     onClick={() => handleClick(item.name)} neonIndex={neonIndex}/>
+                        )
+                    })}
 
                     {/* Theme Toggle */}
                     <button
@@ -136,7 +153,8 @@ export default function Navbar({setActiveSection}) {
                     : 'bg-white/80 shadow-lg'}`}
             >
                 <div className="grid grid-cols-2 gap-4">
-                    <NavItem key={'About'} to={'/about'} label={'About'} Icon={User} theme={theme} onClick={()=> handleClick('About')} neonIndex={neonIndex} />
+                    <NavItem key={'About'} to={'/about'} label={'About'} Icon={User} theme={theme}
+                             onClick={() => handleClick('About')} neonIndex={neonIndex}/>
                     {hiddenNavItems.map((item) => {
                         const commonClasses = `flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 
             ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`;
@@ -150,7 +168,7 @@ export default function Navbar({setActiveSection}) {
                                 rel="noopener noreferrer"
                                 className={`inline-flex appearance-none ${commonClasses}`}
                             >
-                                <item.icon className="w-5 h-5" />
+                                <item.icon className="w-5 h-5"/>
                                 <span>{item.name}</span>
                             </a>
                         ) : item.name === 'Resume' ? (
@@ -160,7 +178,7 @@ export default function Navbar({setActiveSection}) {
                                 onClick={handleResumeDownload}
                                 className={`inline-flex appearance-none ${commonClasses}`}
                             >
-                                <item.icon className="w-5 h-5" />
+                                <item.icon className="w-5 h-5"/>
                                 <span>{item.name}</span>
                             </button>
                         ) : (
@@ -171,7 +189,7 @@ export default function Navbar({setActiveSection}) {
                                 label={item.name}
                                 Icon={item.icon}
                                 theme={theme}
-                                onClick={()=> handleClick(item.name)}
+                                onClick={() => handleClick(item.name)}
                                 neonIndex={neonIndex}
                                 className={commonClasses} // Apply same styles
                             />
@@ -196,7 +214,7 @@ export default function Navbar({setActiveSection}) {
                                     className={`flex items-center space-x-2 p-2 rounded-lg transition-all duration-300
                 ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
                                 >
-                                    <item.icon className="w-5 h-5" />
+                                    <item.icon className="w-5 h-5"/>
                                     <span>{item.name}</span>
                                 </a>
                             ) : item.name === 'Resume' ? (
@@ -207,12 +225,13 @@ export default function Navbar({setActiveSection}) {
                                     className={`flex items-center space-x-2 p-2 rounded-lg transition-all duration-300
                 ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
                                 >
-                                    <item.icon className="w-5 h-5" />
+                                    <item.icon className="w-5 h-5"/>
                                     <span>{item.name}</span>
                                 </button>
                             ) : (
                                 // Handle normal navigation
-                                <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme} onClick={()=> handleClick(item.name)} neonIndex={neonIndex} />
+                                <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme}
+                                         onClick={() => handleClick(item.name)} neonIndex={neonIndex}/>
                             )
                         ))}
 
@@ -244,7 +263,7 @@ const NavItem = ({to, label, Icon, theme, onClick, neonIndex}) => (
     <NavLink
         to={to}
         onClick={onClick}
-        className={({ isActive }) =>
+        className={({isActive}) =>
             `flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-300
             ${theme === 'dark'
                 ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`

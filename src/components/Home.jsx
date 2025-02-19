@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Hero from "./Hero.jsx";
-import Blog from "./Blog.jsx";
+import Blogs from "./Blogs.jsx";
 import About from "./About.jsx";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         <div id='home'>
             <Hero/>
             <About/>
-            <Blog/>
+            <Blogs/>
         </div>
     )
 }

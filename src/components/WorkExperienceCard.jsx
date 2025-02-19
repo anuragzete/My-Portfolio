@@ -61,14 +61,12 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                     )}
 
                     {/* Duration & Location */}
-                    {(experience.duration || experience.location) && (
+                    {(experience.duration.start || experience.duration.end || experience.location) && (
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                            {experience.duration && (
-                                <div className="flex items-center">
-                                    <Calendar className="w-4 h-4 mr-1" />
-                                    {experience.duration}
-                                </div>
-                            )}
+                            <div className="flex items-center">
+                                <Calendar className="w-4 h-4 mr-1" />
+                                {experience.duration.start} - {experience.duration.end}
+                            </div>
                             {experience.location && (
                                 <div className="flex items-center">
                                     <MapPin className="w-4 h-4 mr-1" />
@@ -79,20 +77,23 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                     )}
 
                     {/* Description */}
-                    {experience.description?.length > 0 && (
-                        <ul className="list-disc list-inside space-y-2 mb-4 text-gray-600 dark:text-gray-300">
+                    {Array.isArray(experience.description) && experience.description.length > 0 ? (
+                        <div className="space-y-2 mb-4 text-gray-600 dark:text-gray-300">
                             {experience.description.map((item, i) => (
-                                <li key={i}>{item}</li>
+                                <p key={i}>{typeof item === "string" ? item : JSON.stringify(item)}</p>
                             ))}
-                        </ul>
+                        </div>
+                    ) : (
+                        <p className="text-gray-500 dark:text-gray-400 mb-4">No description available.</p>
                     )}
+
 
                     {/* Technologies */}
                     {experience.technologies?.length > 0 && (
                         <div className="flex flex-wrap gap-2">
-                            {experience.technologies.map((tech) => (
+                            {experience.technologies.map((tech, i) => (
                                 <span
-                                    key={tech}
+                                    key={i}
                                     className={`px-3 py-1 text-sm rounded-full ${
                                         theme === "dark" ? "bg-blue-900/50 text-blue-400" : "bg-blue-100 text-blue-600"
                                     }`}
@@ -100,30 +101,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                                     {tech}
                                 </span>
                             ))}
-                        </div>
-                    )}
-
-                    {/* Achievements */}
-                    {experience.achievements?.length > 0 && (
-                        <div className="mt-4">
-                            <h4 className="font-semibold">Achievements</h4>
-                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                                {experience.achievements.map((achievement, i) => (
-                                    <li key={i}>{achievement}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {/* Key Responsibilities */}
-                    {experience.key_responsibilities?.length > 0 && (
-                        <div className="mt-4">
-                            <h4 className="font-semibold">Key Responsibilities</h4>
-                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
-                                {experience.key_responsibilities.map((responsibility, i) => (
-                                    <li key={i}>{responsibility}</li>
-                                ))}
-                            </ul>
                         </div>
                     )}
                 </div>
