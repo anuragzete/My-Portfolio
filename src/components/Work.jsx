@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import { db } from '../firebase-config';
+import React, {useEffect, useState, useCallback} from 'react';
+import {useTheme} from '../context/ThemeContext';
+import {db} from '../firebase-config';
 import WorkExperienceCard from './WorkExperienceCard';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import {collection, getDocs, query, orderBy} from 'firebase/firestore';
 
 
 const Work = () => {
-    const { theme } = useTheme();
+    const {theme} = useTheme();
     const [experiences, setExperiences] = useState([]);
     const [visibleSections, setVisibleSections] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -78,16 +78,27 @@ const Work = () => {
         setLimit((prevLimit) => prevLimit + 5);
     };
 
-    if (loading) return <p className="text-center">Loading work experiences...</p>;
-    if (error) return <p className="text-center text-red-500">Error: {error}</p>;
-    if (experiences.length === 0) return <p className="text-center text-gray-500">No work experience available.</p>;
+    if (loading)
+        return <p
+            className="text-center text-2xl font-semibold text-green-500 absolute inset-0 flex items-center justify-center">Loading
+            work experiences...</p>;
+
+    if (error)
+        return <p
+            className="text-center text-2xl font-semibold text-red-500 absolute inset-0 flex items-center justify-center">Error: {error}</p>;
+
+    if (experiences.length === 0)
+        return <p
+            className="text-center text-2xl font-semibold text-gray-500 absolute inset-0 flex items-center justify-center">Sorry, No
+            work experience available.</p>;
 
     return (
         <section id="work" className="py-20">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Work Experience</h2>
                 <div className="relative">
-                    <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-700"/>
+                    <div
+                        className="absolute left-0 md:left-1/2 transform md:-translate-x-px top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-700"/>
                     <div className="space-y-12">
                         {experiences.slice(0, limit).map((experience, index) => (
                             <WorkExperienceCard
@@ -100,7 +111,8 @@ const Work = () => {
                     </div>
                     {limit < experiences.length && (
                         <div className="text-center mt-8">
-                            <button onClick={loadMore} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            <button onClick={loadMore}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                                 Load More
                             </button>
                         </div>

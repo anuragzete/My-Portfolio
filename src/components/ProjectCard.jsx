@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import React, {useState} from 'react';
+import {Github, ExternalLink} from 'lucide-react';
 import CardPopup from "./CardPopup";
 
 const isValidUrl = (url) => {
@@ -11,7 +11,7 @@ const isValidUrl = (url) => {
     }
 };
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({project}) => {
     const [isPopupOpen, setPopupOpen] = useState(false);
 
     return (
@@ -23,25 +23,41 @@ const ProjectCard = ({ project }) => {
                 <div className="aspect-video overflow-hidden">
                     <img
                         src={project.image_urls?.[0]}
-                        alt={project.name || 'Project Image'}
+                        alt={project.name || 'Project_Assets Image'}
                         className="w-full h-full object-cover transition-transform group-hover:scale-110"
                     />
                 </div>
                 <div className="p-6 space-y-4">
                     {project.name && <h3 className="text-xl font-semibold">{project.name}</h3>}
-                    {project.description && <p className="text-gray-600 dark:text-gray-300">{project.description}</p>}
+                    {project.description && (
+                        <p className="text-gray-600 dark:text-gray-300 line-clamp-3 overflow-hidden">
+                            {project.description}
+                        </p>
+                    )}
 
                     {project.technologies && project.technologies.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, index) => (
-                                <span key={index} className="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700">
+                                <span key={index}
+                                      className="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700">
                                     {tech}
                                 </span>
                             ))}
                         </div>
                     )}
 
-                    {project.status && <p className="text-sm text-gray-500 dark:text-gray-400">Status: {project.status}</p>}
+                    {/* Project_Assets Status & Duration */}
+                    {project.status && project.durationText && (
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                            <p>
+                                <span className="font-semibold">Status:</span> {project.status}
+                            </p>
+                            <p>
+                                <span className="font-semibold">Duration:</span> {project.durationText}
+                            </p>
+                        </div>
+                    )}
+
 
                     <div className="flex space-x-4 pt-4">
                         {isValidUrl(project.githubLink) && (
@@ -50,7 +66,7 @@ const ProjectCard = ({ project }) => {
                                 className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                                 target="_blank" rel="noopener noreferrer"
                             >
-                                <Github className="w-5 h-5" />
+                                <Github className="w-5 h-5"/>
                                 <span>Code</span>
                             </a>
                         )}
@@ -60,16 +76,19 @@ const ProjectCard = ({ project }) => {
                                 className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                                 target="_blank" rel="noopener noreferrer"
                             >
-                                <ExternalLink className="w-5 h-5" />
+                                <ExternalLink className="w-5 h-5"/>
                                 <span>Live Demo</span>
                             </a>
                         )}
                     </div>
                 </div>
             </div>
-            {isPopupOpen && <CardPopup project={project} isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />}
+            {
+                isPopupOpen && <CardPopup project={project} isOpen={isPopupOpen} onClose={() => setPopupOpen(false)}/>
+            }
         </>
-    );
+    )
+        ;
 };
 
 export default ProjectCard;

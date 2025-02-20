@@ -3,10 +3,11 @@ import { db } from '../firebase-config'; // Import Firebase Firestore
 import { collection, getDocs } from 'firebase/firestore';
 import ProjectCard from './ProjectCard';
 
-// Function to convert Google Drive URLs to direct image links
-const getDirectImageUrl = (url) => {
-    const match = url.match(/\/d\/(.*?)\//); // Extracts file ID from Drive link
-    return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : url;
+// Function to format Firestore timestamps
+const formatDate = (timestamp) => {
+    if (!timestamp || !timestamp.seconds) return "Invalid date";
+    const date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleDateString();
 };
 
 export default function Projects() {
@@ -21,14 +22,22 @@ export default function Projects() {
                 const projectList = querySnapshot.docs.map((doc) => {
                     const projectData = doc.data();
 
-                    // Process image URLs if they exist
-                    if (projectData.image_urls && Array.isArray(projectData.image_urls)) {
-                        projectData.image_urls = projectData.image_urls.map(getDirectImageUrl);
+                    // Process duration
+                    const start = formatDate(projectData.project_duration?.start);
+                    const end = formatDate(projectData.project_duration?.end);
+
+                    // Determine status and duration text
+                    let durationText = "";
+                    if (projectData.status === "completed") {
+                        durationText = `${start} - ${end}`;
+                    } else if (projectData.status === "in progress") {
+                        durationText = `${start} - Present`;
                     }
 
                     return {
                         id: doc.id,
                         ...projectData,
+                        durationText, // Add processed duration text
                     };
                 });
 
@@ -43,9 +52,20 @@ export default function Projects() {
         fetchProjects();
     }, []);
 
-    if (loading) return <p className="text-center">Loading projects...</p>;
-    if (error) return <p className="text-center text-red-500">Error: {error}</p>;
-    if (projects.length === 0) return <p className="text-center text-gray-500">No projects available.</p>;
+    if (loading)
+        return <p className="text-center text-2xl font-semibold text-green-500 absolute inset-0 flex items-center justify-center">
+            Loading projects...
+        </p>;
+
+    if (error)
+        return <p className="text-center text-2xl font-semibold text-red-500 absolute inset-0 flex items-center justify-center">
+            Error: {error}
+        </p>;
+
+    if (projects.length === 0)
+        return <p className="text-center text-2xl font-semibold text-gray-500 absolute inset-0 flex items-center justify-center">
+            Sorry, No projects available.
+        </p>;
 
     return (
         <section id="projects" className="py-20">
