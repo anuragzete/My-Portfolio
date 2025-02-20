@@ -200,59 +200,70 @@ export default function Navbar({setActiveSection}) {
 
 
             {/* Mobile Navigation */}
-            {
-                isMenuOpen && (
-                    <div className="md:hidden px-4 pb-4 flex flex-col space-y-3">
-                        {navItems.map((item) => (
-                            item.href ? (
-                                // Handle external links
-                                <a
-                                    key={item.name}
-                                    href={item.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`flex items-center space-x-2 p-2 rounded-lg transition-all duration-300
-                ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
-                                >
-                                    <item.icon className="w-5 h-5"/>
-                                    <span>{item.name}</span>
-                                </a>
-                            ) : item.name === 'Resume' ? (
-                                // Handle Resume download
-                                <button
-                                    key={item.name}
-                                    onClick={handleResumeDownload}
-                                    className={`flex items-center space-x-2 p-2 rounded-lg transition-all duration-300
-                ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
-                                >
-                                    <item.icon className="w-5 h-5"/>
-                                    <span>{item.name}</span>
-                                </button>
-                            ) : (
-                                // Handle normal navigation
-                                <NavItem key={item.name} to={item.to} label={item.name} Icon={item.icon} theme={theme}
-                                         onClick={() => handleClick(item.name)} neonIndex={neonIndex}/>
-                            )
-                        ))}
+            {isMenuOpen && (
+                <div className="md:hidden px-4 pb-4 flex flex-col space-y-3">
+                    {navItems.map((item) => (
+                        item.href ? (
+                            // External Link
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+          ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
+                            >
+                                <item.icon className="w-5 h-5" />
+                                <span className="flex-1">{item.name}</span>
+                            </a>
+                        ) : item.name === 'Resume' ? (
+                            // Resume Download Button
+                            <a
+                                key={item.name}
+                                href="/resume.pdf" // Change this to the actual resume URL
+                                download
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+      ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
+                            >
+                                <item.icon className="w-5 h-5" />
+                                <span className="flex-1">{item.name}</span>
+                            </a>
+                        ) : (
+                            // Internal Navigation
+                            <NavItem
+                                key={item.name}
+                                to={item.to}
+                                label={item.name}
+                                Icon={item.icon}
+                                theme={theme}
+                                onClick={() => {
+                                    handleClick(item.name);
+                                    setIsMenuOpen(false);
+                                }}
+                                className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+          ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
+                                neonIndex={neonIndex}
+                            />
+                        )
+                    ))}
 
-                        {/* Theme Toggle (Mobile) */}
-                        <button
-                            onClick={() => {
-                                toggleTheme();
-                                setIsMenuOpen(false);
-                            }}
-                            className={`p-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${
-                                theme === 'dark'
-                                    ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-yellow-400`
-                                    : 'hover:bg-gray-100 text-gray-600'
-                            }`}
-                        >
-                            {theme === 'dark' ? <Sun className="w-5 h-5"/> : <Moon className="w-5 h-5"/>}
-                            <span>Toggle Theme</span>
-                        </button>
-                    </div>
-                )
-            }
+                    {/* Theme Toggle Button */}
+                    <button
+                        onClick={() => {
+                            toggleTheme();
+                            setIsMenuOpen(false);
+                        }}
+                        className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+      ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-yellow-400` : 'hover:bg-gray-100 text-gray-600'}`}
+                    >
+                        {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                        <span className="flex-1">Toggle Theme</span>
+                    </button>
+                </div>
+            )}
+
         </nav>
     )
         ;
