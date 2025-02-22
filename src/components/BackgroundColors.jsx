@@ -1,7 +1,6 @@
-const BackgroundCircles = () => {
+export default function BackgroundColors() {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            {/* First Circle */}
             <div
                 className="absolute w-96 h-96 bg-blue-400 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -10,7 +9,6 @@ const BackgroundCircles = () => {
                 }}
             ></div>
 
-            {/* Second Circle */}
             <div
                 className="absolute w-80 h-80 bg-yellow-400 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -19,7 +17,6 @@ const BackgroundCircles = () => {
                 }}
             ></div>
 
-            {/* Third Circle */}
             <div
                 className="absolute w-72 h-72 bg-teal-400 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -28,7 +25,6 @@ const BackgroundCircles = () => {
                 }}
             ></div>
 
-            {/* Fourth Circle */}
             <div
                 className="absolute w-96 h-96 bg-pink-500 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -37,7 +33,6 @@ const BackgroundCircles = () => {
                 }}
             ></div>
 
-            {/* Fifth Circle */}
             <div
                 className="absolute w-80 h-80 bg-indigo-500 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -46,7 +41,6 @@ const BackgroundCircles = () => {
                 }}
             ></div>
 
-            {/* Sixth Circle */}
             <div
                 className="absolute w-72 h-72 bg-purple-400 rounded-full opacity-30 blur-3xl"
                 style={{
@@ -58,4 +52,3 @@ const BackgroundCircles = () => {
     );
 };
 
-export default BackgroundCircles;

@@ -52,7 +52,6 @@ export default function Hero() {
                     beautiful and functional websites. Let's work together to bring your ideas to life!
                 </p>
 
-                {/* Social Links - Visible only on mobile (md:hidden) */}
                 <div className="flex justify-center space-x-4 sm:flex md:flex lg:hidden">
                     <a
                         href="https://github.com/anuragzete/"

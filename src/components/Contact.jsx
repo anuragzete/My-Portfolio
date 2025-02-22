@@ -1,13 +1,8 @@
-import React, {useState} from "react";
-import {Send} from "lucide-react";
+import React, { useState } from "react";
+import { Send } from "lucide-react";
 
 const NEON_CLASSES =
     "bg-gradient-to-r from-blue-500 to-purple-500 hover:shadow-[0_0_15px_rgba(168,101,201,0.8)]";
-
-// List of trusted email domains
-const trustedDomains = [
-    "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "icloud.com", "protonmail.com", "aol.com"
-];
 
 export default function Contact() {
     const [message, setMessage] = useState("");
@@ -16,8 +11,8 @@ export default function Contact() {
     const [status, setStatus] = useState("");
 
     const handleInput = (event) => {
-        event.target.style.height = "auto"; // Reset height
-        event.target.style.height = event.target.scrollHeight + "px"; // Expand height dynamically
+        event.target.style.height = "auto";
+        event.target.style.height = event.target.scrollHeight + "px";
         setMessage(event.target.value);
     };
 
@@ -29,21 +24,30 @@ export default function Contact() {
         setName(event.target.value);
     };
 
+    const validateEmail = async (email) => {
+        try {
+            const response = await fetch(`https://www.disify.com/api/email/${email}`);
+            const data = await response.json();
+
+            return data.format && data.dns && !data.disposable;
+        } catch (error) {
+            console.error("Error validating email:", error);
+            return false;
+        }
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Validation: Check if all fields are filled
         if (!name.trim() || !email.trim() || !message.trim()) {
-            alert("Please fill in all fields before submitting.");
+            setStatus("Please fill in all fields before submitting.");
             return;
         }
 
-        // Extract domain from email
-        const emailDomain = email.split("@")[1];
-
-        if (!trustedDomains.includes(emailDomain)) {
-            alert("Please use a valid email provider like Gmail, Outlook, or Yahoo.");
-            setEmail(""); // Clear email field
+        const isValidEmail = await validateEmail(email);
+        if (!isValidEmail) {
+            setStatus("Invalid or disposable email address. Please use a valid one.");
+            setEmail("");
             return;
         }
 
@@ -65,9 +69,8 @@ export default function Contact() {
             const result = await response.json();
             if (result.success) {
                 setStatus("Message sent successfully!");
-                setTimeout(() => setStatus(""), 3000); // Clear status message after 3 sec
+                setTimeout(() => setStatus(""), 3000);
 
-                // Clear input fields
                 setEmail("");
                 setMessage("");
                 setName("");
@@ -87,7 +90,6 @@ export default function Contact() {
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-12">
-                    {/* Left Section: Contact Info */}
                     <div className="hidden md:flex flex-col justify-center self-start space-y-6">
                         <h3 className="text-3xl font-bold">Get in touch</h3>
                         <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -97,7 +99,7 @@ export default function Contact() {
 
                         <div className="space-y-2 text-lg text-gray-700 dark:text-gray-300">
                             <p>
-                                You can drop a <strong>Hi</strong> on WhatsApp : <br/>
+                                You can drop a <strong>Hi</strong> on WhatsApp : <br />
                                 <a
                                     href="https://wa.me/918793738304"
                                     target="_blank"
@@ -110,7 +112,6 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    {/* Right Section: Contact Form */}
                     <div className="w-full">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <input
@@ -134,16 +135,13 @@ export default function Contact() {
                                 rows="2"
                                 className="w-full px-4 py-2 border border-gray-400 dark:border-gray-600 rounded-lg bg-transparent focus:ring-2 focus:ring-blue-500 resize-none overflow-hidden"
                             />
-
-                            {/* Submission Status */}
                             {status && <p className="text-center text-green-500">{status}</p>}
 
-                            {/* Neon-Themed Submit Button */}
                             <button
                                 type="submit"
                                 className={`flex items-center justify-center space-x-2 w-full px-6 py-3 text-white rounded-lg transition-all shadow-lg ${NEON_CLASSES}`}
                             >
-                                <Send className="w-5 h-5"/>
+                                <Send className="w-5 h-5" />
                                 <span>Send Message</span>
                             </button>
                         </form>

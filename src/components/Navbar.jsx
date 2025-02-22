@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useTheme} from '../context/ThemeContext';
 import {Sun, Moon, Home, User, Code, Mail, Briefcase, BookOpen, Clock, Award, FileText, X, Menu} from 'lucide-react';
-import {NavLink} from 'react-router-dom'; // Import Link from react-router-dom
+import {NavLink} from 'react-router-dom';
 
 const NEON_COLORS = [
     'from-pink-500 to-purple-500',
@@ -20,7 +20,6 @@ export default function Navbar({setActiveSection}) {
 
     useEffect(() => {
         const handleResize = () => {
-            // Tailwind's `md` breakpoint is 768px
             setDisableHover(window.innerWidth < 768);
         };
 
@@ -54,7 +53,7 @@ export default function Navbar({setActiveSection}) {
     }, [theme]);
 
     const handleMouseEnter = () => {
-        clearTimeout(hoverTimeout.current); // Clear any existing timeout
+        clearTimeout(hoverTimeout.current);
         setIsHovered(true);
     };
 
@@ -90,7 +89,6 @@ export default function Navbar({setActiveSection}) {
             onMouseLeave={handleMouseLeave}
         >
             <div className="px-4 py-3 flex items-center justify-between">
-                {/* Neon Title */}
                 <NavLink
                     to="/"
                     className={`text-2xl font-bold transition-all duration-300 bg-gradient-to-r ${NEON_COLORS[neonIndex]} bg-clip-text text-transparent`}
@@ -160,7 +158,6 @@ export default function Navbar({setActiveSection}) {
             ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`;
 
                         return item.href ? (
-                            // Handle External Links (Certificates)
                             <a
                                 key={item.name}
                                 href={item.href}
@@ -182,7 +179,6 @@ export default function Navbar({setActiveSection}) {
                                 <span>{item.name}</span>
                             </button>
                         ) : (
-                            // Handle Normal Navigation Items (including "About")
                             <NavItem
                                 key={item.name}
                                 to={item.to}
@@ -204,7 +200,6 @@ export default function Navbar({setActiveSection}) {
                 <div className="md:hidden px-4 pb-4 flex flex-col space-y-3">
                     {navItems.map((item) => (
                         item.href ? (
-                            // External Link
                             <a
                                 key={item.name}
                                 href={item.href}
@@ -218,20 +213,16 @@ export default function Navbar({setActiveSection}) {
                                 <span className="flex-1">{item.name}</span>
                             </a>
                         ) : item.name === 'Resume' ? (
-                            // Resume Download Button
-                            <a
+                            <button
                                 key={item.name}
-                                href="/resume.pdf" // Change this to the actual resume URL
-                                download
-                                onClick={() => setIsMenuOpen(false)}
+                                onClick={handleResumeDownload}
                                 className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
-      ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
+          ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
                             >
-                                <item.icon className="w-5 h-5" />
-                                <span className="flex-1">{item.name}</span>
-                            </a>
+                                <item.icon className="w-5 h-5"/>
+                                <span>{item.name}</span>
+                            </button>
                         ) : (
-                            // Internal Navigation
                             <NavItem
                                 key={item.name}
                                 to={item.to}
@@ -269,23 +260,22 @@ export default function Navbar({setActiveSection}) {
         ;
 }
 
-// Reusable NavItem Component
-const NavItem = ({to, label, Icon, theme, onClick, neonIndex}) => (
+const NavItem = ({ to, label, Icon, theme, onClick, neonIndex }) => (
     <NavLink
         to={to}
         onClick={onClick}
-        className={({isActive}) =>
-            `flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-300
-            ${theme === 'dark'
+        className={({ isActive }) =>
+            `flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+      ${theme === 'dark'
                 ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`
                 : 'hover:bg-gray-100 text-gray-600'} 
-            ${isActive
-                ? 'text-indigo-500 font-bold' // Indicate active state with indigo and bold
-                : (theme === 'dark' ? 'text-white' : 'text-gray-600')} 
-            `
+      ${isActive
+                ? '!text-indigo-500 font-bold' // Active state styling
+                : ''}`
         }
     >
-        <Icon className="w-4 h-4"/>
-        <span>{label}</span>
+        <Icon className="w-5 h-5" />
+        <span className="flex-1">{label}</span>
     </NavLink>
 );
+

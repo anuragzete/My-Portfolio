@@ -2,7 +2,7 @@ import React from "react";
 import { Calendar, MapPin, ExternalLink, Github } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
-const WorkExperienceCard = ({ experience, index, visible }) => {
+export default function WorkExperienceCard({ experience, index, visible }) {
     const { theme } = useTheme();
 
     return (
@@ -26,7 +26,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                             : "bg-white hover:shadow-xl"
                     }`}
                 >
-                    {/* Job Title & Company */}
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                         {experience.job_title && <h3 className="text-xl font-semibold">{experience.job_title}</h3>}
                         <div className="flex items-center space-x-3">
@@ -46,7 +45,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                         </div>
                     </div>
 
-                    {/* Duration & Location */}
                     {(experience.duration.start || experience.duration.end || experience.location) && (
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                             <div className="flex items-center">
@@ -62,7 +60,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                         </div>
                     )}
 
-                    {/* Description */}
                     {Array.isArray(experience.description) && experience.description.length > 0 ? (
                         <ul className="list-disc list-outside pl-5 space-y-2 mb-4 text-gray-600 dark:text-gray-300">
                             {experience.description.map((item, i) => (
@@ -73,7 +70,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                         <p className="text-gray-500 dark:text-gray-400 mb-4">No description available.</p>
                     )}
 
-                    {/* GitHub Icon + Technologies Section */}
                     <div className="flex items-center justify-between mt-4">
                         {/* Technologies */}
                         {experience.technologies?.length > 0 && (
@@ -91,7 +87,6 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
                             </div>
                         )}
 
-                        {/* GitHub Icon (Aligned with Technologies) */}
                         {experience.github_url && (
                             <a
                                 href={experience.github_url}
@@ -110,4 +105,3 @@ const WorkExperienceCard = ({ experience, index, visible }) => {
     );
 };
 
-export default WorkExperienceCard;

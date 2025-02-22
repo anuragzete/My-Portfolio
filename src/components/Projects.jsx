@@ -3,7 +3,6 @@ import { db } from "../firebase-config"; // Import Firebase Firestore
 import { collection, getDocs } from "firebase/firestore";
 import ProjectCard from "./ProjectCard";
 
-// Function to format Firestore timestamps
 const formatDate = (timestamp) => {
     if (!timestamp || !timestamp.seconds) return "Invalid date";
     const date = new Date(timestamp.seconds * 1000);
@@ -30,11 +29,10 @@ export default function Projects() {
                     const start = formatDate(projectData.project_duration?.start);
                     const end = formatDate(projectData.project_duration?.end);
 
-                    // Determine status and duration text
                     let durationText = "";
                     if (projectData.status === "completed") {
                         durationText = `${start} - ${end}`;
-                    } else if (projectData.status === "in progress") {
+                    } else if (projectData.status === "in_progress") {
                         durationText = `${start} - Present`;
                     }
 

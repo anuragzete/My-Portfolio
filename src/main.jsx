@@ -8,7 +8,7 @@ import './index.css';
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <ThemeProvider>
-            <BrowserRouter> {/* Only one Router here */}
+            <BrowserRouter>
                 <App />
             </BrowserRouter>
         </ThemeProvider>

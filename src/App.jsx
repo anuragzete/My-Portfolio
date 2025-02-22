@@ -51,11 +51,7 @@ export default function App() {
                 <div
                     className={`relative overflow-hidden ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}
                 >
-                    {/* Background with moving blurred shapes */}
                     <BackgroundColors/>
-
-
-                    {/* Content */}
                     <div className="relative min-h-screen flex flex-col transition-all duration-700">
                         <Navbar setActiveSection={setActiveSection} />
                         <SocialLinks />

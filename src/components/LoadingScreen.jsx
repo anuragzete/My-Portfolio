@@ -12,12 +12,10 @@ export default function LoadingScreen() {
 
     return (
         <div className="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex flex-col items-center justify-center space-y-4">
-            {/* Enlarged Loading Text with Smooth Animation */}
             <div className="text-6xl font-extrabold text-blue-600 dark:text-blue-400 transition-all duration-300">
                 Loading<span>{dots}</span>
             </div>
 
-            {/* Animated "some cool stuff!" with bounce and fade */}
             <div className="text-lg md:text-2xl font-medium text-gray-600 dark:text-gray-400 animate-bounce opacity-80">
                 some cool stuff!
             </div>

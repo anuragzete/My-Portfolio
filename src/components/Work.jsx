@@ -1,12 +1,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {useTheme} from '../context/ThemeContext';
 import {db} from '../firebase-config';
 import WorkExperienceCard from './WorkExperienceCard';
 import {collection, getDocs, query, orderBy} from 'firebase/firestore';
 
 
-const Work = () => {
-    const {theme} = useTheme();
+export default function Work() {
     const [experiences, setExperiences] = useState([]);
     const [visibleSections, setVisibleSections] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -123,4 +121,3 @@ const Work = () => {
     );
 };
 
-export default Work;
