@@ -30,12 +30,6 @@ export default function Hero() {
         }
     }, [index]);
 
-    const copyEmailToClipboard = () => {
-        navigator.clipboard.writeText('anuragzete27@outlook.com').then(() => {
-            alert('Email copied to clipboard!');
-        }).catch(err => console.error('Failed to copy:', err));
-    };
-
     return (
         <section id="home" className="min-h-screen flex items-center justify-center pt-14">
             <div className="text-center space-y-8">
@@ -62,7 +56,6 @@ export default function Hero() {
                 <div className="flex justify-center space-x-4 sm:flex md:flex lg:hidden">
                     <a
                         href="https://github.com/anuragzete/"
-                        target="_blank"
                         rel="noopener noreferrer"
                         className={`p-2 rounded-full ${
                             theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'
@@ -73,7 +66,6 @@ export default function Hero() {
                     </a>
                     <a
                         href="https://linkedin.com/in/anurag-zete-java-developer"
-                        target="_blank"
                         rel="noopener noreferrer"
                         className={`p-2 rounded-full ${
                             theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'
@@ -82,15 +74,17 @@ export default function Hero() {
                     >
                         <Linkedin className="w-6 h-6" />
                     </a>
-                    <button
-                        onClick={copyEmailToClipboard}
+                    <a
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=anuragzete27@outlook.com"
+                        rel="noopener noreferrer"
                         className={`p-2 rounded-full ${
                             theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'
                         } transition-colors`}
-                        title="Copy Email"
+                        title="Send Email"
                     >
                         <Mail className="w-6 h-6" />
-                    </button>
+                    </a>
+
                 </div>
 
                 <a href="#about" className="inline-block animate-bounce">
