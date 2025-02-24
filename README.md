@@ -26,7 +26,9 @@ Welcome to my portfolio website! This project showcases my skills, projects, and
 
 ## 📸 Screenshots
 
-![Home Page](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-18%20235809.png?raw=true)
+![Home Page (Dark Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-18%20235809.png?raw=true)
+
+![Home Page (Light Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-21%20212538.png?raw=true)
 
 ![About](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-21%20212644.png?raw=true)
 
@@ -36,7 +38,7 @@ Welcome to my portfolio website! This project showcases my skills, projects, and
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-portfolio.git
+   git clone https://github.com/anuragzete/My-Portfolio.git
    ```
 2. Navigate to the project folder:
    ```sh
@@ -67,9 +69,9 @@ This project is **MIT Licensed**.
 
 ## 📬 Contact
 
-📧 Email: [your-email@example.com](mailto\:anuragzete27@outlook.com)\
-🔗 LinkedIn: [Your LinkedIn](www.linkedin.com/in/anurag-zete-java-developer)\
-📂 GitHub: [Your GitHub](https://github.com/anuragzete)
+📧 Email: [anuragzete27@outlook.com](mailto\:anuragzete27@outlook.com)\
+🔗 LinkedIn: [Anurag Zete](www.linkedin.com/in/anurag-zete-java-developer)\
+📂 GitHub: [anuragzete](https://github.com/anuragzete)
 
 ---
 
