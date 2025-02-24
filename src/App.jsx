@@ -22,7 +22,7 @@ export default function App() {
     useEffect(() => {
         const handleLoad = () => {
             setTimeout(() => {
-                setLoading(false); // Update loading state after a delay
+                setLoading(false);
             }, 500);
         };
 
@@ -32,12 +32,10 @@ export default function App() {
             window.addEventListener('load', handleLoad);
         }
 
-        // Cleanup listener when component is unmounted
         return () => window.removeEventListener('load', handleLoad);
     }, []);
 
     useEffect(() => {
-        // Set dynamic page title based on active section
         document.title = activeSection === "home"
             ? "Anurag Zete | Home"
             : `Anurag Zete | ${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} `;

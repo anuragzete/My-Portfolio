@@ -20,10 +20,8 @@
     window.addEventListener('resize', detectDevTools);
     setInterval(detectDevTools, 500);
 
-    // Disable right-click
     document.addEventListener('contextmenu', (event) => event.preventDefault());
 
-    // Disable certain key combinations
     window.addEventListener('keydown', (event) => {
         if (event.key === 'F12' ||
             (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) ||

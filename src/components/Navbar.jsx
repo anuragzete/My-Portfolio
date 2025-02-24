@@ -23,7 +23,7 @@ export default function Navbar({setActiveSection}) {
             setDisableHover(window.innerWidth < 768);
         };
 
-        handleResize(); // Run once on mount
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -96,7 +96,6 @@ export default function Navbar({setActiveSection}) {
                     Portfolio
                 </NavLink>
 
-                {/* Hamburger Button (Mobile) */}
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="md:hidden text-gray-600 dark:text-white focus:outline-none"
@@ -128,7 +127,6 @@ export default function Navbar({setActiveSection}) {
                         )
                     })}
 
-                    {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
                         className={`p-2 rounded-lg transition-all duration-300 ${
@@ -240,7 +238,6 @@ export default function Navbar({setActiveSection}) {
                         )
                     ))}
 
-                    {/* Theme Toggle Button */}
                     <button
                         onClick={() => {
                             toggleTheme();
@@ -270,7 +267,7 @@ const NavItem = ({ to, label, Icon, theme, onClick, neonIndex }) => (
                 ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white`
                 : 'hover:bg-gray-100 text-gray-600'} 
       ${isActive
-                ? '!text-indigo-500 font-bold' // Active state styling
+                ? '!text-indigo-500 font-bold' 
                 : ''}`
         }
     >

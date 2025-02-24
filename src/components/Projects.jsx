@@ -16,7 +16,7 @@ export default function Projects() {
     const [currentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-    const projectsPerPage = 3; // Number of projects per page on mobile
+    const projectsPerPage = 3;
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -39,7 +39,7 @@ export default function Projects() {
                     return {
                         id: doc.id,
                         ...projectData,
-                        durationText, // Add processed duration text
+                        durationText,
                     };
                 });
 
@@ -53,7 +53,6 @@ export default function Projects() {
         };
         fetchProjects();
 
-        // Listen for screen size changes
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };

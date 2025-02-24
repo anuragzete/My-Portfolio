@@ -70,7 +70,7 @@ This project is **MIT Licensed**.
 ## 📬 Contact
 
 📧 Email: [anuragzete27@outlook.com](mailto\:anuragzete27@outlook.com)\
-🔗 LinkedIn: [Anurag Zete](www.linkedin.com/in/anurag-zete-java-developer)\
+🔗 LinkedIn: [Anurag Zete](https://www.linkedin.com/in/anurag-zete-java-developer)\
 📂 GitHub: [anuragzete](https://github.com/anuragzete)
 
 ---

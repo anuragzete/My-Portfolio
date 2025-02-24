@@ -95,7 +95,6 @@ export default function BlogsList() {
                     ))}
                 </div>
 
-                {/* View More Blogs Button (Redirect to Blog Website) */}
                 <div className="flex justify-center mt-8">
                     <a
                         href="https://yourblogwebsite.com" // Change this to your blog URL
