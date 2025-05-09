@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Github, ExternalLink, CheckCircle, Calendar, RefreshCcw } from 'lucide-react';
-import CardPopup from "./CardPopup";
+import CardPopup from "./CardPopup.jsx";
 
 const isValidUrl = (url) => {
     try {

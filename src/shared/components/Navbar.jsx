@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useTheme} from '../context/ThemeContext';
+import {useTheme} from '../../context/ThemeContext.jsx';
 import {Sun, Moon, Home, User, Code, Mail, Briefcase, BookOpen, Clock, Award, FileText, X, Menu} from 'lucide-react';
 import {NavLink} from 'react-router-dom';
 

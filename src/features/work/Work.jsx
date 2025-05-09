@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {db} from '../firebase-config';
-import WorkExperienceCard from './WorkExperienceCard';
+import {db} from '../../firebase-config.js';
+import WorkExperienceCard from './WorkExperienceCard.jsx';
 import {collection, getDocs, query, orderBy} from 'firebase/firestore';
 
 

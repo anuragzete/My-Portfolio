@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase-config"; // Import Firebase Firestore
+import { db } from "../../firebase-config.js"; // Import Firebase Firestore
 import { collection, getDocs } from "firebase/firestore";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./ProjectCard.jsx";
 
 const formatDate = (timestamp) => {
     if (!timestamp || !timestamp.seconds) return "Invalid date";

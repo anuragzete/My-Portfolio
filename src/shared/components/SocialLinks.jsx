@@ -1,6 +1,6 @@
 import React from 'react';
 import {Github, Linkedin, Code, Mail, Youtube, Instagram} from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext.jsx';
 
 export default function SocialLinks() {
   const { theme } = useTheme();

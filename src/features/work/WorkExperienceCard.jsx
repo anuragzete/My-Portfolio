@@ -1,6 +1,6 @@
 import React from "react";
 import { Calendar, MapPin, ExternalLink, Github } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 export default function WorkExperienceCard({ experience, index, visible }) {
     const { theme } = useTheme();

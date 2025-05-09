@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from './context/ThemeContext';
+import { useTheme } from '../context/ThemeContext.jsx';
 import { Routes, Route } from 'react-router-dom';
-import LoadingScreen from './components/LoadingScreen';
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Footer from './components/Footer';
-import Contact from './components/Contact';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Blogs from './components/Blogs';
-import Work from './components/Work';
-import Home from './components/Home';
-import SocialLinks from "./components/SocialLinks.jsx";
-import BackgroundColors from "./components/BackgroundColors.jsx";
+import LoadingScreen from '../shared/components/LoadingScreen.jsx';
+import Navbar from '../shared/components/Navbar.jsx';
+import About from '../features/home/About.jsx';
+import Footer from '../shared/components/Footer.jsx';
+import Contact from '../features/contact/Contact.jsx';
+import Projects from '../features/project/Projects.jsx';
+import Skills from '../shared/components/Skills.jsx';
+import Blogs from '../features/blog/Blogs.jsx';
+import Work from '../features/work/Work.jsx';
+import Home from '../features/home/Home.jsx';
+import SocialLinks from "../shared/components/SocialLinks.jsx";
+import BackgroundColors from "../shared/components/BackgroundColors.jsx";
 
 export default function App() {
     const { theme } = useTheme();

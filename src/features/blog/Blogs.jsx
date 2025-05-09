@@ -1,6 +1,6 @@
 import React from 'react';
 import {Calendar, Clock, ArrowRight} from 'lucide-react';
-import {useTheme} from '../context/ThemeContext';
+import {useTheme} from '../../context/ThemeContext.jsx';
 import { Link } from "react-router-dom";
 
 const blogPosts = [

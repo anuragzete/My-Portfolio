@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Hero from "./Hero.jsx";
-import Blogs from "./Blogs.jsx";
+import Blogs from "../blog/Blogs.jsx";
 import About from "./About.jsx";
 
 export default function Home() {
