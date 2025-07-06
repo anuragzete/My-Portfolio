@@ -35,7 +35,7 @@ MyPortfolio/
 │   │   │   └── WorkPreview.jsx
 │   │
 │   │   ├── about/
-│   │   │   └── About.jsx
+│   │   │   └── HomeAbout.jsx
 │   │   │   └── Timeline.jsx
 │   │
 │   │   ├── work/

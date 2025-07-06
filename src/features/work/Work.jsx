@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {db} from '../../firebase-config.js';
 import WorkExperienceCard from './WorkExperienceCard.jsx';
+import LoadingSpinner from "../../shared/components/LoadingSpinner.jsx";
 import {collection, getDocs, query, orderBy} from 'firebase/firestore';
 
 
@@ -76,10 +77,7 @@ export default function Work() {
         setLimit((prevLimit) => prevLimit + 5);
     };
 
-    if (loading)
-        return <p
-            className="text-center text-2xl font-semibold text-green-500 absolute inset-0 flex items-center justify-center">Loading
-            work experiences...</p>;
+    if (loading) return <LoadingSpinner label="Fetching work experience..." />;
 
     if (error)
         return <p

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useTheme} from '../../context/ThemeContext.jsx';
-import {Sun, Moon, Home, User, Code, Mail, Briefcase, BookOpen, Clock, Award, FileText, X, Menu} from 'lucide-react';
+import {Sun, Moon, Home, User, Code, Mail, Briefcase, BookOpen, Clock, X, Menu} from 'lucide-react';
 import {NavLink} from 'react-router-dom';
 
 const NEON_COLORS = [
@@ -34,8 +34,6 @@ export default function Navbar({setActiveSection}) {
         {name: 'Skills', icon: Code, to: '/skills'},
         {name: 'Work', icon: Clock, to: '/work'},
         {name: 'Projects', icon: Briefcase, to: '/projects'},
-        {name: 'Certificates', icon: Award, href: 'https://github.com/anuragzete/Certificates'},
-        {name: 'Resume', icon: FileText},
         {name: 'Contact', icon: Mail, to: '/contact'}
     ];
 
@@ -62,17 +60,6 @@ export default function Navbar({setActiveSection}) {
             setIsHovered(false);
         }, 500); // 1-second delay before hiding
     };
-
-    const handleResumeDownload = () => {
-        const resumeUrl = 'https://drive.google.com/file/d/1iuPYQb_F2SfalSzOR-Xb-f_gzlhmg0PC/view?usp=drive_link'; // Replace with actual URL
-        const link = document.createElement('a');
-        link.href = resumeUrl;
-        link.setAttribute('download', 'Anurag_Zete_Resume.pdf'); // Suggests download but depends on CORS settings
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
 
     const handleClick = (title) => {
         setActiveSection(title);
@@ -166,16 +153,6 @@ export default function Navbar({setActiveSection}) {
                                 <item.icon className="w-5 h-5"/>
                                 <span>{item.name}</span>
                             </a>
-                        ) : item.name === 'Resume' ? (
-                            // Handle Resume Download (as button)
-                            <button
-                                key={item.name}
-                                onClick={handleResumeDownload}
-                                className={`inline-flex appearance-none ${commonClasses}`}
-                            >
-                                <item.icon className="w-5 h-5"/>
-                                <span>{item.name}</span>
-                            </button>
                         ) : (
                             <NavItem
                                 key={item.name}
@@ -210,17 +187,7 @@ export default function Navbar({setActiveSection}) {
                                 <item.icon className="w-5 h-5" />
                                 <span className="flex-1">{item.name}</span>
                             </a>
-                        ) : item.name === 'Resume' ? (
-                            <button
-                                key={item.name}
-                                onClick={handleResumeDownload}
-                                className={`flex items-center w-full space-x-3 px-4 py-3 rounded-lg transition-all duration-300
-          ${theme === 'dark' ? `hover:bg-gradient-to-r ${NEON_COLORS[neonIndex]} text-white` : 'hover:bg-gray-100 text-gray-600'}`}
-                            >
-                                <item.icon className="w-5 h-5"/>
-                                <span>{item.name}</span>
-                            </button>
-                        ) : (
+                        ) :  (
                             <NavItem
                                 key={item.name}
                                 to={item.to}

@@ -1,48 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Services from "../../services/Services.jsx";
 
 export default function About() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 200) setIsVisible(true);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <section id="about" className="py-20">
             <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">About Me</h2>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                    {/* Clickable Image */}
-                    <div className="aspect-square rounded-2xl overflow-hidden cursor-pointer" onClick={() => setIsModalOpen(true)}>
+                    <div
+                        className="aspect-square rounded-2xl overflow-hidden cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
+                    >
                         <img
                             src="/resources/profilePhoto.jpg"
                             alt="Profile"
                             className="w-full h-full object-cover transition-transform hover:scale-105"
                         />
                     </div>
+
                     <div className="space-y-4">
                         <p className="text-gray-600 dark:text-gray-300">
-                            I’m a Full Stack Java Developer and a Computer Science student, specializing in Java and React.
-                            I enjoy building dynamic, scalable applications and am currently diving deeper into the Spring Framework
-                            to strengthen my backend expertise.
+                            I’m a Full Stack Java Developer and a Computer Science student, specializing in Java, Spring Boot, and React.
+                            I enjoy building dynamic, scalable applications and aim to deliver efficient, secure solutions.
                         </p>
                         <p className="text-gray-600 dark:text-gray-300">
-                            Beyond development, I’m passionate about cybersecurity, blockchain, open-source contribution,
-                            and technical writing. I love solving complex problems, optimizing performance, and staying updated
-                            with emerging technologies. Contributing to open-source projects and sharing knowledge with the tech
-                            community keeps me motivated.
+                            I’m also passionate about cybersecurity, blockchain, open-source contribution, and technical writing.
+                            I love solving complex problems and contributing to innovative projects.
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-300">
+                            Whether you're a startup, a developer team, or an open-source community, I love collaborating on real-world
+                            products, research-driven solutions, and impactful web applications.
                         </p>
                         <p className="text-gray-600 dark:text-gray-300">
                             Let's build something amazing together! 🚀
                         </p>
-                        <div className="pt-4">
+                        <div className="pt-4 flex flex-wrap gap-4 justify-center">
                             <button
                                 onClick={() => navigate('/contact')}
-                                className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                             >
                                 Get in Touch
                             </button>
+                            <a
+                                href="/resources/Anurag_Zete_Resume.pdf"
+                                download
+                                className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+                            >
+                                Download Resume
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <Services />
             </div>
 
             {/* Modal Popup for Image */}

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Hero from "./Hero.jsx";
 import Blogs from "../blog/Blogs.jsx";
-import About from "./About.jsx";
+import HomeAbout from "./HomeAbout.jsx";
 
 export default function Home() {
     useEffect(() => {
@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <div id='home'>
             <Hero/>
-            <About/>
+            <HomeAbout/>
             <Blogs/>
         </div>
     )

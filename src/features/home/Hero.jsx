@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import {ArrowDown, Code, Github, Linkedin} from "lucide-react";
 import { useTheme } from "../../context/ThemeContext.jsx";
 
 export default function Hero() {
@@ -49,10 +49,10 @@ export default function Hero() {
 
                 <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
                     I specialize in backend development, creating robust and scalable solutions that power
-                    beautiful and functional websites. Let's work together to bring your ideas to life!
+                    beautiful and functional websites.
                 </p>
 
-                <div className="flex justify-center space-x-4 sm:flex md:flex lg:hidden">
+                <div className="flex justify-center space-x-4 sm:flex md:flex">
                     <a
                         href="https://github.com/anuragzete/"
                         rel="noopener noreferrer"
@@ -74,19 +74,18 @@ export default function Hero() {
                         <Linkedin className="w-6 h-6" />
                     </a>
                     <a
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=anuragzete27@outlook.com"
+                        href="https://leetcode.com/u/anuragzete/"
                         rel="noopener noreferrer"
                         className={`p-2 rounded-full ${
                             theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'
                         } transition-colors`}
-                        title="Send Email"
+                        title="LeetCode"
                     >
-                        <Mail className="w-6 h-6" />
+                        <Code className="w-6 h-6" />
                     </a>
-
                 </div>
 
-                <a href="#about" className="inline-block animate-bounce">
+                <a href="#homeAbout" className="inline-block animate-bounce">
                     <ArrowDown className="w-6 h-6" />
                 </a>
             </div>

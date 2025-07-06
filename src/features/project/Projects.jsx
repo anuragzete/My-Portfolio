@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase-config.js"; // Import Firebase Firestore
 import { collection, getDocs } from "firebase/firestore";
 import ProjectCard from "./ProjectCard.jsx";
+import LoadingSpinner from "../../shared/components/LoadingSpinner.jsx";
 
 const formatDate = (timestamp) => {
     if (!timestamp || !timestamp.seconds) return "Invalid date";
@@ -65,12 +66,7 @@ export default function Projects() {
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
     const currentProjects = isMobile ? projects.slice(indexOfFirstProject, indexOfLastProject) : projects;
 
-    if (loading)
-        return (
-            <p className="text-center text-2xl font-semibold text-green-500 absolute inset-0 flex items-center justify-center">
-                Loading projects...
-            </p>
-        );
+    if (loading) return <LoadingSpinner label="Fetching Projects..." />;
 
     if (error)
         return (
