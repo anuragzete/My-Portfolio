@@ -1,59 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../../firebase-config.js"; // Import Firebase Firestore
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState, useContext } from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import LoadingSpinner from "../../shared/components/LoadingSpinner.jsx";
-
-const formatDate = (timestamp) => {
-    if (!timestamp || !timestamp.seconds) return "Invalid date";
-    const date = new Date(timestamp.seconds * 1000);
-    return date.toLocaleDateString();
-};
+import {DataContext} from "../../context/DataProvider.jsx";
 
 export default function Projects() {
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const { projects, loading, error } = useContext(DataContext);
 
     const projectsPerPage = 3;
 
     useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, "projects"));
-                const projectList = querySnapshot.docs.map((doc) => {
-                    const projectData = doc.data();
-
-                    // Process duration
-                    const start = formatDate(projectData.project_duration?.start);
-                    const end = formatDate(projectData.project_duration?.end);
-
-                    let durationText = "";
-                    if (projectData.status === "completed") {
-                        durationText = `${start} - ${end}`;
-                    } else if (projectData.status === "in_progress") {
-                        durationText = `${start} - Present`;
-                    }
-
-                    return {
-                        id: doc.id,
-                        ...projectData,
-                        durationText,
-                    };
-                });
-
-                setProjects(projectList);
-            } catch (error) {
-                console.error("Error fetching projects:", error);
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProjects();
-
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
@@ -92,7 +49,6 @@ export default function Projects() {
                     ))}
                 </div>
 
-                {/* Pagination Controls (only on mobile) */}
                 {isMobile && totalPages > 1 && (
                     <div className="flex justify-center mt-6 space-x-4">
                         {currentPage > 1 && (

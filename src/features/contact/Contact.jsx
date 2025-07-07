@@ -51,9 +51,8 @@ export default function Contact() {
             return;
         }
 
-        // Web3Forms API Submission
         const formData = new FormData();
-        formData.append("access_key", "730e1c83-0ce7-433a-b59d-055e9f024026"); // Replace with your Web3Forms key
+        formData.append("access_key", import.meta.env.WEB3FORMS_ACCESS_KEY);
         formData.append("subject", "New Submission from Portfolio");
         formData.append("botcheck", "");
         formData.append("name", name);

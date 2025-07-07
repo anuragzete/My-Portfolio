@@ -127,7 +127,6 @@ export default function Navbar({setActiveSection}) {
                 </div>
             </div>
 
-            {/* Hidden Navigation Items */}
             <div
                 className={`absolute left-0 mt-2 w-full rounded-xl p-4 backdrop-blur-md transition-all duration-500
                     ${isHovered && !disableHover ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
@@ -169,8 +168,6 @@ export default function Navbar({setActiveSection}) {
                 </div>
             </div>
 
-
-            {/* Mobile Navigation */}
             {isMenuOpen && (
                 <div className="md:hidden px-4 pb-4 flex flex-col space-y-3">
                     {navItems.map((item) => (

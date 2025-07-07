@@ -72,7 +72,7 @@ export default function Skills() {
                 {Object.entries(skillCategories).map(([category, skills]) => (
                     <div key={category} className="mb-14">
                         <h3 className="text-2xl font-semibold mb-8 text-center">{category}</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={skill.name}
@@ -107,16 +107,6 @@ export default function Skills() {
                         </div>
                     </div>
                 ))}
-                <div className="text-center mt-10">
-                    <a
-                        href="https://github.com/anuragzete/Certificates"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
-                    >
-                        View All Certificates
-                    </a>
-                </div>
             </div>
         </section>
     );

@@ -5,12 +5,6 @@ import { Github, Globe } from "lucide-react";
 export default function CardPopup({ project, isOpen, onClose }) {
     if (!project) return null;
 
-    const formatDate = (timestamp) => {
-        if (!timestamp?.seconds) return "Invalid date";
-        const date = new Date(timestamp.seconds * 1000);
-        return date.toLocaleDateString();
-    };
-
     return (
         <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose}></div>

@@ -69,7 +69,6 @@ export default function About() {
                 <Services />
             </div>
 
-            {/* Modal Popup for Image */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
                     <div className="relative">

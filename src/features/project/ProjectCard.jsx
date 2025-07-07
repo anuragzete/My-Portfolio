@@ -28,7 +28,6 @@ export default function ProjectCard({ project }) {
                 className={`group rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 
                 bg-white dark:bg-gray-800 hover:shadow-xl`}
             >
-                {/* Image */}
                 {project.image_url && (
                     <div className="aspect-video overflow-hidden">
                         <img
@@ -39,9 +38,7 @@ export default function ProjectCard({ project }) {
                     </div>
                 )}
 
-                {/* Card Body */}
                 <div className="p-6 space-y-4">
-                    {/* Status and Duration */}
                     {(project.status || project.durationText) && (
                         <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                             {project.status && (
@@ -65,21 +62,18 @@ export default function ProjectCard({ project }) {
                         </div>
                     )}
 
-                    {/* Title */}
                     {project.name && (
                         <h3 className="text-xl font-semibold group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                             {project.name}
                         </h3>
                     )}
 
-                    {/* Description */}
                     {project.description && (
                         <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3">
                             {project.description}
                         </p>
                     )}
 
-                    {/* Technologies */}
                     {project.technologies?.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, index) => (
@@ -90,7 +84,6 @@ export default function ProjectCard({ project }) {
                         </div>
                     )}
 
-                    {/* Action Buttons */}
                     <div className="flex gap-4 pt-2">
                         {isValidUrl(project.githubLink) && (
                             <a
@@ -116,7 +109,6 @@ export default function ProjectCard({ project }) {
                 </div>
             </article>
 
-            {/* Modal */}
             {isPopupOpen && <CardPopup project={project} isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />}
         </>
     );

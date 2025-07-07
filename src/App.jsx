@@ -7,7 +7,7 @@ import Footer from './shared/components/Footer.jsx';
 import Contact from './features/contact/Contact.jsx';
 import Projects from './features/project/Projects.jsx';
 import Skills from './features/profile/Skills.jsx';
-import Blogs from './features/blog/Blogs.jsx';
+import Blogs from './features/blog/BlogsList.jsx';
 import Work from './features/work/Work.jsx';
 import Home from './features/home/Home.jsx';
 import BackgroundColors from "./shared/components/BackgroundColors.jsx";

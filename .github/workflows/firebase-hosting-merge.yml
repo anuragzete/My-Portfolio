@@ -21,6 +21,7 @@ jobs:
           echo "VITE_MESSAGING_SENDER_ID=${{ secrets.VITE_MESSAGING_SENDER_ID }}" >> .env.production
           echo "VITE_APP_ID=${{ secrets.VITE_APP_ID }}" >> .env.production
           echo "VITE_MEASUREMENT_ID=${{ secrets.VITE_MEASUREMENT_ID }}" >> .env.production
+          echo "WEB3FORMS_ACCESS_KEY=${{ secrets.WEB3FORMS_ACCESS_KEY }}" >> .env.production
 
       - name: Debug .env.production file
         run: cat .env.production
