@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Hero from "./Hero.jsx";
 import BlogsList from "../blog/BlogsList.jsx";
 import HomeAbout from "./HomeAbout.jsx";
