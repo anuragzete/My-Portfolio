@@ -1,18 +1,20 @@
 import React, {useEffect} from "react";
 import Hero from "./Hero.jsx";
-import Blogs from "../blog/BlogsList.jsx";
+import BlogsList from "../blog/BlogsList.jsx";
 import HomeAbout from "./HomeAbout.jsx";
+import StatsSection from "./StatsSection.jsx";
 
 export default function Home() {
-    useEffect(() => {
+    /*useEffect(() => {
         window.scrollTo({top: 0, behavior: "smooth"});
-    }, [location.pathname]);
+    }, [location.pathname]);*/
 
     return (
         <div id='home'>
-            <Hero/>
-            <HomeAbout/>
-            <Blogs/>
+            <Hero />
+            <HomeAbout />
+            <StatsSection />
+            <BlogsList />
         </div>
     )
 }
