@@ -10,9 +10,9 @@ export default function HomeAbout() {
             <div className="max-w-4xl mx-auto text-center px-4 space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl">
-                    I’m a passionate Full Stack Java Developer with a knack for building efficient, scalable web apps.
-                    I love working with Spring Boot, React, and modern DevOps tools. I'm also into cybersecurity, open-source,
-                    and exploring the latest in tech innovation.
+                    I’m a passionate software developer who enjoys building scalable apps, exploring system design,
+                    and working with modern technologies. I'm also enthusiastic about cybersecurity, open-source, and
+                    continuous learning.
                 </p>
                 <button
                     onClick={() => navigate("/about")}

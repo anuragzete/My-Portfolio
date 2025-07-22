@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from './context/ThemeContext.jsx';
 import { Routes, Route } from 'react-router-dom';
+import { logEvent, getClientContext } from "./utils/logger";
+import useVisitorSession from "./shared/hooks/useVisitorSession.js";
 import Navbar from './shared/components/Navbar.jsx';
 import About from './features/profile/About.jsx';
 import Footer from './shared/components/Footer.jsx';
@@ -11,11 +13,42 @@ import Blogs from './features/blog/BlogsList.jsx';
 import Work from './features/work/Work.jsx';
 import Home from './features/home/Home.jsx';
 import BackgroundColors from "./shared/components/BackgroundColors.jsx";
+import useSupabaseSessionToken from "./shared/hooks/useSupabaseSessionToken.js";
 
 export default function App() {
     const { theme } = useTheme();
     const [activeSection, setActiveSection] = useState('home');
+    const sessionId = useVisitorSession();
+    const supabaseToken = useSupabaseSessionToken();
+    console.log(sessionId+" "+supabaseToken);
 
+    useEffect(() => {
+        if (!sessionId || !supabaseToken) return;
+        console.log(sessionId+" "+supabaseToken);
+
+        logEvent({
+            type: "visit",
+            message: "Homepage visited",
+            context: getClientContext(),
+            sessionId,
+        });
+    }, [sessionId, supabaseToken]);
+
+    useEffect(() => {
+        const sessionId = sessionStorage.getItem("visitor_session_id");
+
+        const handleError = (event) => {
+            logEvent({
+                type: "visit",
+                message: "Homepage visited",
+                context: getClientContext(),
+                sessionId,
+            });
+        };
+
+        window.addEventListener("error", handleError);
+        return () => window.removeEventListener("error", handleError);
+    }, []);
 
     useEffect(() => {
         document.title = activeSection === "home"
@@ -48,3 +81,4 @@ export default function App() {
         </>
     );
 }
+

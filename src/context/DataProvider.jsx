@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { db } from "../firebase-config";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, orderBy } from "firebase/firestore";
 
 export const DataContext = createContext();
 
@@ -8,6 +8,7 @@ export const DataProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
     const [experiences, setExperiences] = useState([]);
     const [blogs, setBlogs] = useState([]);
+    const [blogReads, setBlogReads] = useState(0);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -116,20 +117,48 @@ export const DataProvider = ({ children }) => {
         }
     };
 
+    const fetchBlogReads = async () => {
+        const cached = sessionStorage.getItem("blogReads_cache");
+        if (cached) {
+            try {
+                setBlogReads(JSON.parse(cached));
+            } catch {
+                console.warn("Invalid blogReads cache");
+            }
+        }
+
+        try {
+            const docRef = doc(db, "blogStats", "stats");
+            const docSnap = await fetchWithRetry(() => getDoc(docRef));
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const reads = data.total_reads || 0;
+                setBlogReads(reads);
+                sessionStorage.setItem("blogReads_cache", JSON.stringify(reads));
+            } else {
+                console.warn("blogStats/stats not found");
+            }
+        } catch (err) {
+            console.error("Failed to fetch blogReads:", err);
+        }
+    };
 
     useEffect(() => {
         const loadAll = async () => {
             setLoading(true);
             setError(null);
 
-            // Load cached data
             loadCachedData("projects_cache", setProjects);
             loadCachedData("experiences_cache", setExperiences);
             loadCachedData("blogs_cache", setBlogs);
+            loadCachedData("blogReads_cache", setBlogReads);
 
             try {
                 await fetchWithRetry(fetchProjects);
                 await fetchWithRetry(fetchExperiences);
+                await fetchWithRetry(fetchBlogs);
+                await fetchWithRetry(fetchBlogReads);
                 await fetchBlogs();
             } catch (err) {
                 console.error("Data fetch failed:", err);
@@ -149,6 +178,7 @@ export const DataProvider = ({ children }) => {
                 projects,
                 experiences,
                 blogs,
+                blogReads,
                 loading,
                 error,
                 blogsLoading,

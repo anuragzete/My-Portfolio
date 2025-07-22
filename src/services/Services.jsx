@@ -5,27 +5,27 @@ const services = [
     {
         title: "Full Stack Development",
         icon: <FaLaptopCode className="w-10 h-10 text-blue-600" />,
-        description: "Building responsive and scalable web applications using Java, Spring Boot, React, and Node.js."
+        description: "Responsive and scalable web applications built using Java, Spring Boot, React, and modern frontend-backend frameworks."
     },
     {
         title: "API Development",
         icon: <FaTools className="w-10 h-10 text-green-600" />,
-        description: "Designing and integrating robust RESTful APIs with secure and optimized backend systems."
+        description: "Designing secure, RESTful APIs that enable smooth client-server communication and scalable integrations."
     },
     {
         title: "Cybersecurity & Blockchain",
         icon: <FaLock className="w-10 h-10 text-purple-600" />,
-        description: "Exploring security practices and decentralized applications using modern cryptography and blockchain."
+        description: "Secure systems and decentralized applications developed with cryptographic techniques and blockchain protocols."
     },
     {
         title: "Database & DevOps",
         icon: <FaDatabase className="w-10 h-10 text-yellow-600" />,
-        description: "Experienced with SQL, MongoDB, Docker, and version control tools for streamlined development workflows."
+        description: "Efficient data management with SQL and MongoDB, combined with streamlined DevOps practices using Git and Docker."
     },
     {
         title: "Desktop App Development",
         icon: <FaDesktop className="w-10 h-10 text-pink-600" />,
-        description: "Creating cross-platform desktop applications using Java Swing, JavaFX, and Electron-based frameworks."
+        description: "Cross-platform desktop applications crafted using Java Swing, JavaFX, and multithreading for real-time capabilities."
     }
 ];
 

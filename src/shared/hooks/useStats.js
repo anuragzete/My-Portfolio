@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { DataContext } from "../../context/DataProvider.jsx"; // adjust the path if needed
+
 
 const GITHUB_USERNAME = "anuragzete";
 const LEETCODE_USERNAME = "anuragzete";
@@ -15,10 +17,13 @@ const fetchWithRetry = async (fn, retries = 3, delay = 1000) => {
 };
 
 export const useStats = () => {
+    const { blogReads } = useContext(DataContext);
+
     const [stats, setStats] = useState({
         githubProjects: 0,
         githubContributions: 0,
         leetCodeSolved: 0,
+        blogReads: blogReads || 0,
         loading: true,
         error: null,
     });
@@ -30,7 +35,7 @@ export const useStats = () => {
         if (cached) {
             try {
                 const parsed = JSON.parse(cached);
-                setStats({ ...parsed, loading: false });
+                setStats({ ...parsed, blogReads, loading: false });
                 return;
             } catch {
                 console.warn("Invalid stats cache, refetching...");
@@ -73,6 +78,7 @@ export const useStats = () => {
                 const combined = {
                     ...github,
                     ...leetcode,
+                    blogReads,
                     loading: false,
                     error: null,
                 };
@@ -90,7 +96,7 @@ export const useStats = () => {
         };
 
         fetchAll();
-    }, []);
+    }, [blogReads]);
 
     return stats;
 };

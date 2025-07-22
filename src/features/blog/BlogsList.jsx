@@ -11,7 +11,7 @@ export default function BlogsList() {
 
     const displayedBlogs = blogs.slice(0, 3);
 
-    if (loading) return <LoadingSpinner label="Fetching blogs..." />;
+    if (loading) return <LoadingSpinner/>;
     if (error) return <p className="text-center text-red-500">Error: {error}</p>;
     if (displayedBlogs.length === 0) return null;
 
