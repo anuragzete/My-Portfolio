@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { DataContext } from "../../context/DataProvider.jsx"; // adjust the path if needed
+import { DataContext } from "../../context/DataProvider.jsx";
 
 
 const GITHUB_USERNAME = "anuragzete";
