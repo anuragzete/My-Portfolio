@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Services from "../../services/Services.jsx";
-import { logEvent, getClientContext } from "../../utils/logger";
-import useVisitorSession from "../../shared/hooks/useVisitorSession.js";
 
 export default function About() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const sessionId = useVisitorSession();
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,15 +21,6 @@ export default function About() {
         link.href = "/resources/Anurag_Zete_Resume.pdf";
         link.download = "Anurag_Zete_Resume.pdf";
         link.click();
-
-        if (sessionId) {
-            await logEvent({
-                type: "resume_download",
-                message: "Resume downloaded",
-                context: getClientContext(),
-                sessionId,
-            });
-        }
     };
 
     return (

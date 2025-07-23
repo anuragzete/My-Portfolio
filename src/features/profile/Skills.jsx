@@ -25,7 +25,7 @@ const skillCategories = {
         {name: "Spring Boot", icon: <SiSpring/>, level: 70, color: "#6DB33F"},
         {name: "Tailwind CSS", icon: <SiTailwindcss/>, level: 85, color: "#38B2AC"},
         {name: "OpenCV", icon: <SiOpencv/>, level: 60, color: "#5C3EE8"},
-      /*  {name: "Selenium", icon: <SiSelenium/>, level: 65, color: "#43B02A"},*/
+        {name: "Selenium", icon: <SiSelenium/>, level: 65, color: "#43B02A"},
         {name: "JUnit", icon: <SiTestinglibrary/>, level: 65, color: "#25A162"}
     ],
     "Tools & Platforms": [

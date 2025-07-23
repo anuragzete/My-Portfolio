@@ -26,13 +26,13 @@ Welcome to my portfolio website! This project showcases my skills, projects, and
 
 ## Screenshots
 
-![Home Page (Dark Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-18%20235809.png?raw=true)
+![Home Page (Dark Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/public/resources/assets/home-page-dark-mode.png?raw=true)
 
-![Home Page (Light Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-21%20212538.png?raw=true)
+![Home Page (Light Mode)](https://github.com/anuragzete/My-Portfolio/blob/main/public/resources/assets/home-page-light-mode.png?raw=true)
 
-![About](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-21%20212644.png?raw=true)
+![About](https://github.com/anuragzete/My-Portfolio/blob/main/public/resources/assets/home-about.png?raw=true)
 
-![Work Experience](https://github.com/anuragzete/My-Portfolio/blob/main/Project_Assets/Personal%20Portfolio%20Website/Screenshot%202025-02-21%20212814.png?raw=true)
+![Work Experience](https://github.com/anuragzete/My-Portfolio/blob/main/public/resources/assets/work-experience.png?raw=true)
 
 ## Installation & Setup
 
