@@ -1,17 +1,8 @@
-import React, {useRef} from "react";
 import { motion } from "framer-motion";
 import { Dialog } from "@headlessui/react";
 import { Github, Globe } from "lucide-react";
 
 export default function CardPopup({ project, isOpen, onClose }) {
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        if (isOpen && scrollRef.current) {
-            scrollRef.current.scrollTop = 0;
-        }
-    }, [isOpen]);
-    
     if (!project) return null;
 
     return (
@@ -25,9 +16,7 @@ export default function CardPopup({ project, isOpen, onClose }) {
                     className="relative bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl w-full max-w-3xl text-gray-900 dark:text-gray-200 max-h-[90vh] overflow-hidden"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div 
-                        ref={scrollRef}
-                        className="max-h-[80vh] overflow-y-auto pr-2 scrollbar-hide">
+                    <div className="max-h-[80vh] overflow-y-auto pr-2 scrollbar-hide">
                         <Dialog.Title className="text-2xl font-bold">{project.name}</Dialog.Title>
                         <p className="mt-2 text-gray-700 dark:text-gray-300">{project.description}</p>
 
