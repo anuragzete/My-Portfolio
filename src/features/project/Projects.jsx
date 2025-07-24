@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import LoadingSpinner from "../../shared/components/LoadingSpinner.jsx";
 import {DataContext} from "../../context/DataProvider.jsx";
@@ -8,12 +8,9 @@ export default function Projects() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const { projects, loading, error } = useContext(DataContext);
     const projectsPerPage = 3;
-    const sectionRef = useRef(null);
 
     useEffect(() => {
-        if (sectionRef.current) {
-            sectionRef.current.scrollIntoView({ behavior: "smooth" });
-        }
+    window.scrollTo({ top: 0, behavior: "smooth" });
     }, [currentPage]);
 
     useEffect(() => {
@@ -46,7 +43,7 @@ export default function Projects() {
         );
 
     return (
-        <section id="projects" className="py-20" ref={sectionRef}>
+        <section id="projects" className="py-20">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
