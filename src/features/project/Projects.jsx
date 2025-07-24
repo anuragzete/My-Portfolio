@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import LoadingSpinner from "../../shared/components/LoadingSpinner.jsx";
 import {DataContext} from "../../context/DataProvider.jsx";
@@ -7,8 +7,14 @@ export default function Projects() {
     const [currentPage, setCurrentPage] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const { projects, loading, error } = useContext(DataContext);
-
     const projectsPerPage = 3;
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        if (sectionRef.current) {
+            sectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [currentPage]);
 
     useEffect(() => {
         const handleResize = () => {
