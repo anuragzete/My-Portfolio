@@ -59,13 +59,13 @@ export default function BlogsList() {
                                 <h3 className="text-xl font-semibold group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                                     {post.title}
                                 </h3>
-                                <Link
-                                    to="/blog"
+                                <a
+                                    to={post.url}
                                     className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 group-hover:translate-x-2 transition-transform"
                                 >
                                     <span>Read More</span>
                                     <ArrowRight className="w-4 h-4" />
-                                </Link>
+                                </a>
                                 <p className="text-gray-600 dark:text-gray-300">{post.excerpt}</p>
                             </div>
                         </article>
