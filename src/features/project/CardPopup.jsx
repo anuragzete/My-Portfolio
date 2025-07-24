@@ -1,4 +1,4 @@
-import React, {useRef} from "React";
+import React, {useRef} from "react";
 import { motion } from "framer-motion";
 import { Dialog } from "@headlessui/react";
 import { Github, Globe } from "lucide-react";
