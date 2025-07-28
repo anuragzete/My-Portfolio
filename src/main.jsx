@@ -6,6 +6,7 @@ import App from './App.jsx';
 import './index.css';
 import {DataProvider} from "./context/DataProvider.jsx";
 import ScrollToTop from "./shared/utils/ScrollToTop.jsx";
+import Maintenance fron "./services/Maintenance.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
@@ -13,7 +14,8 @@ createRoot(document.getElementById('root')).render(
             <DataProvider>
                 <BrowserRouter>
                     <ScrollToTop />
-                    <App />
+{/*                     <App /> */}
+                    <Maintenance />
                 </BrowserRouter>
             </DataProvider>
         </ThemeProvider>
