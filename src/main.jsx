@@ -6,7 +6,7 @@ import App from './App.jsx';
 import './index.css';
 import {DataProvider} from "./context/DataProvider.jsx";
 import ScrollToTop from "./shared/utils/ScrollToTop.jsx";
-import Maintenance fron "./services/Maintenance.jsx";
+import Maintenance from "./services/Maintenance.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
